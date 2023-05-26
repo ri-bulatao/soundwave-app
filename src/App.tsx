@@ -1,10 +1,10 @@
-import "./styles/App.css";
-import { Home } from "./components/views/Home";
+import "./styles/main.css";
+import { Customizer } from ".//pages/customizer/customizer";
 import React from "react";
 
 const App: React.FC = () => (
   <>
-    <Home />
+    <Customizer />
   </>
 );
 export default App;

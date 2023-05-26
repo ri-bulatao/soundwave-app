@@ -1,8 +1,8 @@
-import { AccordionInput } from "../AccordionInput";
-import Canvas from "../Canvas";
+import { AccordionInput } from "./../../components/AccordionInput/AccordionInput";
+import Canvas from "./../../components/Canvas/Canvas";
 import React from "react";
 
-export const Home: React.FC = () => (
+export const Customizer: React.FC = () => (
   <>
     <div className="template-container">
       <div className="col-12">

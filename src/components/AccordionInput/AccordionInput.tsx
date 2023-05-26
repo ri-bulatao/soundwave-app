@@ -1,7 +1,7 @@
 import { Accordion, Alert } from "react-bootstrap";
 import React, { useCallback, useEffect, useState } from "react";
-import DragAndDropInput from "./DragAndDropInput";
-import WaveCanvas from "./WaveCanvas";
+import DragAndDropInput from "./../DragAndDropInput/DragAndDropInput";
+import WaveCanvas from "./../WaveCanvas/WaveCanvas";
 
 export const AccordionInput: React.FC = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null);
