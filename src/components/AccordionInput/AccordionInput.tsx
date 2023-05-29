@@ -1,29 +1,27 @@
-import { Accordion, Alert } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import React, { useCallback, useEffect, useState } from "react";
-import DragAndDropInput from "./DragAndDropInput";
-import WaveCanvas from "./WaveCanvas";
+import DragAndDropInput from "./../DragAndDropInput/DragAndDropInput";
+import WaveCanvas from "./../WaveCanvas/WaveCanvas";
+import { initialState } from "./../InitialState/InitialState";
+import "./AccordionInput.css";
 
 export const AccordionInput: React.FC = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null);
-  const [showFileName, setShowFileName] = useState<boolean>(false);
   const [showFileSizeAlert, setShowFileSizeAlert] = useState<boolean>(false);
   const [audioFileName, setAudioFileName] = useState<string>("No Files Selected");
+
   const handleAudioChange = (file: File): void => {
     if (typeof file !== "undefined" || file !== null) {
-      if (typeof file !== "undefined" || file !== null) {
-        const fileSizeInMB = file.size / (1024 * 1024);
-        if (fileSizeInMB <= 10 && file.type.startsWith("audio/")) {
-          setAudioFile(file);
-          convertToAudioBuffer(file);
-          setAudioFileName(file.name);
-          setShowFileName(true);
-          setShowFileSizeAlert(false);
-        } else {
-          setShowFileSizeAlert(true);
-          setShowFileName(false);
-          setAudioFile(null);
-        }
+      const fileSizeInMB = file.size / (1024 * 1024);
+      if (fileSizeInMB <= 10 && file.type.startsWith("audio/")) {
+        setAudioFile(file);
+        convertToAudioBuffer(file);
+        setAudioFileName(file.name);
+        setShowFileSizeAlert(false);
+      } else {
+        setShowFileSizeAlert(true);
+        setAudioFile(null);
       }
     }
   };
@@ -46,7 +44,6 @@ export const AccordionInput: React.FC = () => {
     [audioFile]
   );
   const resetAudioFile = (): void => {
-    setShowFileName(false);
     setAudioFile(null);
     setAudioBuffer(null);
     console.log("reset");
@@ -61,16 +58,15 @@ export const AccordionInput: React.FC = () => {
 
   return (
     <>
-      <div className="row">
         <Accordion defaultActiveKey={["0"]} alwaysOpen>
           <Accordion.Item eventKey="0">
-            <Accordion.Header><img src="src/assets/icons/upload.png" alt="icon" /> Upload</Accordion.Header>
+            <Accordion.Header><div className="upload-header"><div><img src="src/assets/icons/upload.png" alt="icon" /> Upload </div><p className="upload-desc">Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
               <div className="accordion-upload-container">
-                <p>Upload yuor media to continue:</p>
+                
                 {(audioBuffer !== null) &&
                   <div className="upload-wave-container">
-                    <WaveCanvas id="acc_sound_wave" waveHeight={20} audioBuffer={audioBuffer} width={350} height={170} />
+                    <WaveCanvas id="acc_sound_wave" waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
                     <div className="filename">
                       <img src="src/assets/icons/play-icon.png" alt="" />
                       <p className="audio-name">{audioFileName}</p>
@@ -87,7 +83,7 @@ export const AccordionInput: React.FC = () => {
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
-            <Accordion.Header> <img src="src/assets/icons/material-sizing.png" alt="icon" /> Material & Sizing</Accordion.Header>
+            <Accordion.Header><img src="src/assets/icons/material-sizing.png" alt="icon" /> Material & Sizing</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -111,7 +107,6 @@ export const AccordionInput: React.FC = () => {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
-      </div>
     </>
   );
 };
