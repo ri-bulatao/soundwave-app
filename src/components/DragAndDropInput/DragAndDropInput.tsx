@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import "./DragAndDropInput.css"
 
 interface DragAndDropInputProps {
   onFileChange: (file: File) => void

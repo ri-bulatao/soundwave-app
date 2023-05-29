@@ -15,8 +15,14 @@ const Canvas: React.FC = () => (
         <p>Landscape Image Background Template</p><img src="src/assets/icons/header-icon.png" alt="" />
       </div>
       <div className="canvas-content"></div>
-      <div className="canvas-footer"></div>
-    </div>
+      <div className="canvas-footer">
+        <div className="row">
+          <div className="col-3 active">
+            <img src="soundwave-app/src/assets/img/first.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>  
   </>
 );
 
