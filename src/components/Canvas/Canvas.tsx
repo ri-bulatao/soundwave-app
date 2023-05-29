@@ -1,19 +1,21 @@
 import React from "react";
+import "./Canvas.css"
 
-interface CanvasProps {
-  title: string
-  subtitle: string
-  background: string
-  canvasImage: string
-}
-const Canvas: React.FC<CanvasProps> = ({ title, subtitle, background, canvasImage }) => (
+// interface CanvasProps {
+//   title: string
+//   subtitle: string
+//   background: string
+//   canvasImage: string
+// }
+// { title, subtitle, background, canvasImage }
+const Canvas: React.FC = () => (
   <>
-    <div className="col-12 ">
-      <div className="row">
-        <h2>{ title }</h2>
-        <p>{ subtitle }</p>
-        <img src= { canvasImage } alt="" className="canvas-image" />
+    <div className="canvas-component">
+      <div className="canvas-header">
+        <p>Landscape Image Background Template</p><img src="src/assets/icons/header-icon.png" alt="" />
       </div>
+      <div className="canvas-content"></div>
+      <div className="canvas-footer"></div>
     </div>
   </>
 );
