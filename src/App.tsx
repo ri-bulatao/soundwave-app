@@ -1,10 +1,10 @@
-import "./styles/main.css";
-import { Customizer } from ".//pages/customizer/customizer";
-import React from "react";
+import './styles/main.css'
+import { Customizer } from './/pages/customizer/customizer'
+import React from 'react'
 
 const App: React.FC = () => (
   <>
     <Customizer />
   </>
-);
-export default App;
+)
+export default App
