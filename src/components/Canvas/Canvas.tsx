@@ -18,7 +18,7 @@ const Canvas: React.FC = () => (
       <div className='canvas-footer'>
         <div className='row'>
           <div className='col-3 active'>
-            <img src='soundwave-app/src/assets/img/first.png' alt='' />
+            {/* <img src='/src/assets/img/first.png' alt='' /> */}
           </div>
         </div>
       </div>

@@ -8,10 +8,6 @@ p.upload-desc {
     margin-bottom: 0px;
     margin-top: 8px;
 }
-.template-container {
-    width: 1280px;
-    height: 100%;
-}
 .drag-and-drop-input {
   display: flex;
   flex-direction: column;
@@ -133,30 +129,51 @@ button.accordion-button {
   width: 30px;
   margin-bottom: 10px;
 }
-.col-4.frame-selection {
-  flex: 1;
+.frame-selection.active {
+  position: relative;
 }
-.frame-selection {
-  height: 70px;
-  border: 1px solid;
-  border-radius: 8px;
+.frame-selection.active::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url(/src/assets/icons/template-selected.png);
+  background-position: 100%;
+  background-size: 100%;
+  position: absolute;
+  top: 5px;
+  right: 2px;
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  border-radius: 50px;
 }
-.frame-type {
-  display: flex;
-  gap: 10px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-} 
-.sizing-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  padding: 10px 0;
-  gap: 10px;
-  flex-wrap: wrap;
+.col-6.frame-selection.active::after {
+  border: 1px solid #F6F6F6;
 }
-.col-6.frame-selection {
-  width: 48.5% !important;
+.col-6.frame-selection.false::after {
+  border: 1px solid #F6F6F6;
+  background:#736f6f;;
+}
+.frame-selection.false::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background-position: 100%;
+  background-size: 100%;
+  position: absolute;
+  top: 5px;
+  right: 2px;
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+}
+.frame-selection input {
+  visibility: hidden;
+  position: absolute;
+}
+.material-and-sizing-container p {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 510;
+  font-size: 16px;
+  line-height: 17px;
 }
