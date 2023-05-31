@@ -18,14 +18,14 @@ export const initialState = {
     { size_inc: '24x36 inch', size_cm: '60.96 x 91.44 cm', title: 'Extra Large' }
   ],
   colorOptions: [
-    { key: 'option_1', image: 'src/assets/img/first.png'},
-    { key: 'option_2', image: 'src/assets/img/second.png'},
-    { key: 'option_3', image: 'src/assets/img/third.png'},
-    { key: 'option_4', image: 'src/assets/img/forth.png'}
+    { key: 'option_1', image: 'src/assets/img/first.png' },
+    { key: 'option_2', image: 'src/assets/img/second.png' },
+    { key: 'option_3', image: 'src/assets/img/third.png' },
+    { key: 'option_4', image: 'src/assets/img/forth.png' }
   ],
   colorOptionsMobile: [
-    { key: 'option_1', image: '/src/assets/icons/first_mobile.png'},
-    { key: 'option_2', image: '/src/assets/icons/second_mobile.png'},
-    { key: 'option_3', image: '/src/assets/icons/third_mobile.png'}
+    { key: 'option_1', image: '/src/assets/icons/first_mobile.png' },
+    { key: 'option_2', image: '/src/assets/icons/second_mobile.png' },
+    { key: 'option_3', image: '/src/assets/icons/third_mobile.png' }
   ]
 }

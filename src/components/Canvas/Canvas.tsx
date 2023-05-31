@@ -3,7 +3,6 @@ import ColorTemplate from '../ColorTemplate/ColorTemplate'
 import { initialState } from './../InitialState/InitialState'
 import './Canvas.css'
 
-
 // interface CanvasProps {
 //   title: string
 //   subtitle: string
