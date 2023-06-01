@@ -6,7 +6,7 @@ interface ToggleButtonProps {
   handleSizingSelection: (value: string) => void
 }
 const LayoutSizing: React.FC<ToggleButtonProps> = ({ options, handleSizingSelection }) => {
-  const [selectedOption, setSelectedOption] = useState('')
+  const [selectedOption, setSelectedOption] = useState('Small')
 
   const handleOptionChange = (value: string): any => {
     setSelectedOption(value)

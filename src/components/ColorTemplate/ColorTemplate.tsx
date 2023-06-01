@@ -3,14 +3,14 @@ import './ColorTemplate.css'
 
 interface ToggleButtonProps {
   options: Array<{ key: string, image: string }>
-  handleFrameSelection: (value: string) => void
+  handleColorSelection: (value: string) => void
 }
 
-const ColorTemplate: React.FC<ToggleButtonProps> = ({ options, handleFrameSelection }) => {
-  const [selectedOption, setSelectedOption] = useState('')
+const ColorTemplate: React.FC<ToggleButtonProps> = ({ options, handleColorSelection }) => {
+  const [selectedOption, setSelectedOption] = useState('option_1')
   const handleOptionChange = (value: string): any => {
     setSelectedOption(value)
-    handleFrameSelection(value)
+    handleColorSelection(value)
   }
   return (
     <>
