@@ -3,8 +3,40 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 90vh;
+    height: 920px;
     background: #FFFFFF;
     border: 1px solid #EFEFEF;
     border-radius: 8px;
+}
+.canvas-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 920px;
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 8px;
+}
+.customizer-container {
+    display: flex;
+    gap: 10px;
+}
+.col-8.canvas-container {
+    flex: 0 0 auto;
+    width: 66.66666667% !important;
+}
+@media (max-width: 767px) {
+    .customizer-container{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .col-8.canvas-container {
+        flex: 0 0 auto;
+        width: 100% !important;
+    }
+    .input-container {
+        width: 100%;
+    }
+    .canvas-container {
+        height: 100%;
+    }
 }

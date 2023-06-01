@@ -149,10 +149,6 @@ button.accordion-button {
 .col-6.frame-selection.active::after {
   border: 1px solid #F6F6F6;
 }
-.col-6.frame-selection.false::after {
-  border: 1px solid #F6F6F6;
-  background:#736f6f;;
-}
 .frame-selection.false::after {
   content: "";
   width: 18px;
