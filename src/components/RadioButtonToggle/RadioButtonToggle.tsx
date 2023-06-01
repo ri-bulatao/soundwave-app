@@ -7,7 +7,7 @@ interface ToggleButtonProps {
 }
 
 const RadioButtonToggle: React.FC<ToggleButtonProps> = ({ options, handleFrameSelection }) => {
-  const [selectedOption, setSelectedOption] = useState('')
+  const [selectedOption, setSelectedOption] = useState('frame')
 
   const handleOptionChange = (value: string): any => {
     setSelectedOption(value)
