@@ -87,7 +87,6 @@ export const Customizer: React.FC = () => {
             <Accordion.Header className={`upload-header ${ audioBuffer && 'file-uploaded'}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
               <div className='accordion-upload-container'>
-
                 {(audioBuffer !== null) &&
                   <div className='upload-wave-container'>
                     <WaveCanvas id='acc_sound_wave' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
@@ -107,7 +106,7 @@ export const Customizer: React.FC = () => {
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey='1'>
-            <Accordion.Header className={`material-and-sizing-header ${ (selectedFrame && selectedSizing && audioBuffer) && 'material-sizing-selected'}`} ><img src='src/assets/icons/material-sizing.png' alt='icon' /> Material & Sizing</Accordion.Header>
+            <Accordion.Header className={`material-and-sizing-header ${ (selectedFrame && selectedSizing && audioBuffer ) && 'material-sizing-selected'}`} ><div className='upload-header'><div><img src='src/assets/icons/material-sizing.png' alt='icon' /> Material & Sizing</div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
               <div className="material-and-sizing-container">
                 <p>Frame Type</p>
@@ -118,7 +117,7 @@ export const Customizer: React.FC = () => {
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey='2'>
-            <Accordion.Header><img src='src/assets/icons/preview.png' alt='icon' /> Order Review</Accordion.Header>
+            <Accordion.Header><div className='upload-header'><div><img src='src/assets/icons/preview.png' alt='icon' /> Order Review</div><p className='upload-desc'>Here is your order details:</p></div></Accordion.Header>
             <Accordion.Body>
              <ul className="order-preview-container">
               <li className="order-item">

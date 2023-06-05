@@ -403,6 +403,10 @@ h2.material-and-sizing-header.material-sizing-selected button::after {
   background-size: contain;
   transform: rotate(0deg);
 }
-.upload-header.file-uploaded .upload-desc {
-  display: none;
+.upload-header.file-uploaded .upload-desc,
+button.accordion-button.collapsed .upload-header .upload-desc {
+  display: none; 
+}
+button.accordion-button .upload-header .upload-desc {
+  display: block;
 }
