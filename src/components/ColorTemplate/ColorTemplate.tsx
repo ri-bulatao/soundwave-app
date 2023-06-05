@@ -7,7 +7,7 @@ interface ToggleButtonProps {
 }
 
 const ColorTemplate: React.FC<ToggleButtonProps> = ({ options, handleColorSelection }) => {
-  const [selectedOption, setSelectedOption] = useState('option_1')
+  const [selectedOption, setSelectedOption] = useState('option_0')
   const handleOptionChange = (value: string): any => {
     setSelectedOption(value)
     handleColorSelection(value)

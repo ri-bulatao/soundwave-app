@@ -130,7 +130,7 @@ export const Customizer: React.FC = () => {
           <div className='canvas-header'>
             <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
           </div>
-          <div className='canvas-content'>
+          <div className={`canvas-content mobile ${ selectedColor }`}>
             <div className="canvas-text title">
               <h1>{ canvasTitle }</h1>
             </div>

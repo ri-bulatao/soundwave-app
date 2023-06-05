@@ -305,7 +305,24 @@ button.accordion-button {
     padding: 8px 16px;
     gap: 10px;
 }
-
+.canvas-content.option_1 {
+  background: #002E57;
+}
+.canvas-content.option_2 {
+  background: #787437;
+}
+.canvas-content.option_3 {
+  background: #007B62;
+}
+.mobile .canvas-content.option_1 {
+  background: #F27121;
+}
+.mobile .canvas-content.option_2 {
+  background: #3D9984;
+}
+.mobile .canvas-content.option_3 {
+  background: #D6B0FF;
+}
 @media (max-width: 980px) {
     .canvas-content {
         height: 450px;

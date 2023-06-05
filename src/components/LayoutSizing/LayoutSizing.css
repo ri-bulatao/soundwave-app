@@ -32,3 +32,6 @@ label.col-6.frame-selection span {
     line-height: 19px;
     color: #8F8F8F;
 }
+label.col-6.frame-selection.active {
+  border: 1px solid #222222;
+}
