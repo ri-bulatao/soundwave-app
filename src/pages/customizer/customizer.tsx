@@ -20,6 +20,7 @@ export const Customizer: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<string>('Frame')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
@@ -53,11 +54,8 @@ export const Customizer: React.FC = () => {
     [audioFile]
   )
   const resetAudioFile = (): void => {
-    if (window.confirm('Are you sure you want to delete this item?')) {
-      setAudioFile(null)
-      setAudioBuffer(null)
-      console.log('reset')
-    }
+    setShowConfirmation(true);
+    console.log(showConfirmation);
   }
   const handleFrameSelection = (value: string): void => {
     setSelectedFrame(value)
@@ -71,14 +69,26 @@ export const Customizer: React.FC = () => {
     setSelectedColor(value)
     console.log(value)
   }
+  const handleConfirmDelete = () => {
+    setAudioFile(null)
+    setAudioBuffer(null)
+    setShowConfirmation(false);
+    console.log('reset');
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmation(false);
+  };
+
   useEffect(
     () => {
       console.log(selectedColor)
       console.log(selectedFrame)
       console.log(selectedSizing)
       console.log(audioFile)
+      console.log(showConfirmation);
     },
-    [audioFile, selectedFrame, selectedSizing]
+    [audioFile, selectedFrame, selectedSizing, showConfirmation]
   )
   return (
     <>
@@ -98,6 +108,7 @@ export const Customizer: React.FC = () => {
                           <img src='src/assets/icons/play-icon.png' alt='' />
                           <p className='audio-name'>{audioFileName}</p>
                           <img src='src/assets/icons/delete-icon.png' onClick={resetAudioFile} alt='' />
+
                         </div>
                       </div>}
                     {(audioBuffer === null) && <div className='upload-container'><DragAndDropInput onFileChange={handleAudioChange} /></div>}
@@ -127,6 +138,14 @@ export const Customizer: React.FC = () => {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
+            <ConfirmationModal
+              isOpen={showConfirmation}
+              message="Are you sure you want to remove the audio you uploaded?"
+              subMessage="You will not be able to undo this action."
+              onConfirm={handleConfirmDelete}
+              onCancel={handleCancelDelete}
+              style={{ display: showConfirmation ? 'block' : 'none' }}
+            />
           </div>
           <div className='col-8 canvas-container'>
             <div className='canvas-component'>
