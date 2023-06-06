@@ -19,6 +19,7 @@ export const Customizer: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<string>('')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
+  const [editMode, setEditMode] = useState<string>('default-mode')
 
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
@@ -56,6 +57,10 @@ export const Customizer: React.FC = () => {
     setAudioBuffer(null)
     console.log('reset')
   }
+  const handleEditModeSelection = (value: string): void => {
+    setEditMode(value)
+    console.log(value)
+  }
   const handleFrameSelection = (value: string): void => {
     setSelectedFrame(value)
     console.log(value)
@@ -82,9 +87,9 @@ export const Customizer: React.FC = () => {
     <div className='template-container'>
       <div className='col-12 customizer-container'>
         <div className='col-4 input-container'>
-        <Accordion defaultActiveKey={['0']} >
+        <Accordion defaultActiveKey={['0']} className={`main-accordion-layout ${editMode}`}>
           <Accordion.Item eventKey='0'>
-            <Accordion.Header className={`upload-header ${ audioBuffer && 'file-uploaded'}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
+            <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
               <div className='accordion-upload-container'>
                 {(audioBuffer !== null) &&
@@ -106,7 +111,7 @@ export const Customizer: React.FC = () => {
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey='1'>
-            <Accordion.Header className={`material-and-sizing-header ${ (selectedFrame && selectedSizing && audioBuffer ) && 'material-sizing-selected'}`} ><div className='upload-header'><div><img src='src/assets/icons/material-sizing.png' alt='icon' /> Material & Sizing</div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
+            <Accordion.Header className={`material-and-sizing-header ${(selectedFrame !== '' && selectedSizing !== '' && audioBuffer !== null) ? 'material-sizing-selected' : ''}`} ><div className='upload-header'><div><img src='src/assets/icons/material-sizing.png' alt='icon' /> Material & Sizing</div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
               <div className="material-and-sizing-container">
                 <p>Frame Type</p>
@@ -121,7 +126,7 @@ export const Customizer: React.FC = () => {
             <Accordion.Body>
              <ul className="order-preview-container">
               <li className="order-item">
-                ORIENTATION<strong>{"Landscapre"}</strong>
+                ORIENTATION<strong>{'Landscapre'}</strong>
               </li>
               <li className="order-item">
                 FRAME TYPE<strong>{selectedFrame}</strong>
@@ -130,7 +135,7 @@ export const Customizer: React.FC = () => {
                 SIZE<strong>{selectedSizing}</strong>
               </li>
               <li className="order-item">
-                TOTAL PRICE<strong>{"€50.00"}</strong>
+                TOTAL PRICE<strong>{'€50.00'}</strong>
               </li>
              </ul>
             </Accordion.Body>
@@ -142,7 +147,8 @@ export const Customizer: React.FC = () => {
           <div className='canvas-header'>
             <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
           </div>
-          <div className={`canvas-content ${ selectedColor }`}>
+          <div className={`canvas-content`} style = {{background: `url('${initialState.defaultLayoutBackgroundImage}'`}}>
+            <div className={`overlay ${selectedColor}`}></div>
             <div className="canvas-text title">
               <h1>{ canvasTitle }</h1>
             </div>
@@ -150,9 +156,9 @@ export const Customizer: React.FC = () => {
               <h1>{ canvasSubtitle }</h1>
             </div>
             <div className="canvas-soundwave">
-            {(audioBuffer !== null) ?
-            <WaveCanvas id='canvas-canvas' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
-            : <div className="temp-canvas-image"><img src="src/assets/img/soundwave.png" alt="" /></div>
+            {(audioBuffer !== null)
+              ? <WaveCanvas id='canvas-canvas' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
+              : <div className="temp-canvas-image"><img src="src/assets/img/soundwave.png" alt="" /></div>
             }
             </div>
           </div>
@@ -163,7 +169,6 @@ export const Customizer: React.FC = () => {
             <ColorTemplate options={initialState.colorOptionsMobile} handleColorSelection={handleColorSelection}/>
           </div>
         </div>
-        
         </div>
       </div>
     </div>
