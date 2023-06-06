@@ -7,7 +7,7 @@ import { initialState } from '../../components/InitialState/InitialState'
 import RadioButtonToggle from '../../components/RadioButtonToggle/RadioButtonToggle'
 import LayoutSizing from '../../components/LayoutSizing/LayoutSizing'
 import ColorTemplate from '../../components/ColorTemplate/ColorTemplate'
-import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal';
+import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal'
 import './customizer.css'
 
 export const Customizer: React.FC = () => {
@@ -20,7 +20,7 @@ export const Customizer: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<string>('Frame')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
@@ -54,8 +54,8 @@ export const Customizer: React.FC = () => {
     [audioFile]
   )
   const resetAudioFile = (): void => {
-    setShowConfirmation(true);
-    console.log(showConfirmation);
+    setShowConfirmation(true)
+    console.log(showConfirmation)
   }
   const handleFrameSelection = (value: string): void => {
     setSelectedFrame(value)
@@ -72,13 +72,13 @@ export const Customizer: React.FC = () => {
   const handleConfirmDelete = () => {
     setAudioFile(null)
     setAudioBuffer(null)
-    setShowConfirmation(false);
-    console.log('reset');
-  };
+    setShowConfirmation(false)
+    console.log('reset')
+  }
 
   const handleCancelDelete = () => {
-    setShowConfirmation(false);
-  };
+    setShowConfirmation(false)
+  }
 
   useEffect(
     () => {
@@ -86,7 +86,7 @@ export const Customizer: React.FC = () => {
       console.log(selectedFrame)
       console.log(selectedSizing)
       console.log(audioFile)
-      console.log(showConfirmation);
+      console.log(showConfirmation)
     },
     [audioFile, selectedFrame, selectedSizing, showConfirmation]
   )
