@@ -163,6 +163,7 @@ button.accordion-button {
   line-height: 24px;
   color: var(--font-color-dark) !important;
   background-color: transparent !important;
+  padding: 20px 10px;
 }
 .filename img:last-child:hover {
   box-shadow: 0px 0px 10px 0px #a3a3a3;
@@ -305,7 +306,24 @@ button.accordion-button {
     padding: 8px 16px;
     gap: 10px;
 }
-
+.canvas-content.desktop.option_1 {
+  background: #002E57;
+}
+.canvas-content.desktop.option_2 {
+  background: #787437;
+}
+.canvas-content.desktop.option_3 {
+  background: #007B62;
+}
+.canvas-content.mobile.option_1 {
+  background: #F27121;
+}
+.canvas-content.mobile.option_2 {
+  background: #3D9984;
+}
+.canvas-content.mobile.option_3 {
+  background: #D6B0FF;
+}
 @media (max-width: 980px) {
     .canvas-content {
         height: 450px;
@@ -348,4 +366,47 @@ button.accordion-button {
     .canvas-text.title h1 {
         font-size: 30px;
     }
+}
+/* Order Review CSS */
+ul.order-preview-container {
+  padding: 0;
+  margin: -10px;
+}
+ul.order-preview-container li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 10px;
+  justify-content: space-between;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9C9C9C;
+  border-bottom: 1px solid #EFEFEF;
+}
+ul.order-preview-container li strong {
+  color: #403F3F;
+  font-style: normal;
+  font-weight: 510;
+  font-size: 14px;
+  line-height: 24px;
+}
+/* End of Order Review CSS */
+
+.upload-header.file-uploaded button::after,
+h2.material-and-sizing-header.material-sizing-selected button::after {
+  background: url(/src/assets/icons/accordion-check.png);
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  transform: rotate(0deg);
+}
+.upload-header.file-uploaded .upload-desc,
+button.accordion-button.collapsed .upload-header .upload-desc {
+  display: none; 
+}
+button.accordion-button .upload-header .upload-desc {
+  display: block;
 }

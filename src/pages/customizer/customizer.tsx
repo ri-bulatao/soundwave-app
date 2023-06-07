@@ -15,9 +15,9 @@ export const Customizer: React.FC = () => {
   const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null)
   const [showFileSizeAlert, setShowFileSizeAlert] = useState<boolean>(false)
   const [audioFileName, setAudioFileName] = useState<string>('No Files Selected')
-  const [selectedFrame, setSelectedFrame] = useState<string>('Frame')
-  const [selectedSizing, setSelectedSizing] = useState<string>('Small')
-  const [selectedColor, setSelectedColor] = useState<string>('Frame')
+  const [selectedFrame, setSelectedFrame] = useState<string>('')
+  const [selectedSizing, setSelectedSizing] = useState<string>('')
+  const [selectedColor, setSelectedColor] = useState<string>('')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -69,14 +69,14 @@ export const Customizer: React.FC = () => {
     setSelectedColor(value)
     console.log(value)
   }
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = (): void => {
     setAudioFile(null)
     setAudioBuffer(null)
     setShowConfirmation(false)
     console.log('reset')
   }
 
-  const handleCancelDelete = () => {
+  const handleCancelDelete = (): void => {
     setShowConfirmation(false)
   }
 
