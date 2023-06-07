@@ -1,6 +1,7 @@
 import Canvas from './../../components/Canvas/Canvas'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
+import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
 import DragAndDropInput from '../../components/DragAndDropInput/DragAndDropInput'
 import WaveCanvas from '../../components/WaveCanvas/WaveCanvas'
 import { initialState } from '../../components/InitialState/InitialState'
@@ -36,6 +37,9 @@ export const Customizer: React.FC = () => {
         setAudioFile(null)
       }
     }
+  }
+  const handleLayoutImageUpdate = (file: File): void => {
+    console.log(file);
   }
   const convertToAudioBuffer = useCallback(
     (file: File): void => {
@@ -101,6 +105,21 @@ export const Customizer: React.FC = () => {
       <div className='col-12 customizer-container'>
         <div className='col-4 input-container'>
         <Accordion defaultActiveKey={['0']} className={`main-accordion-layout ${editMode}`}>
+          <Accordion.Item eventKey='0'>
+            <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div>Background customization </div><p className='upload-desc'>Style soundwave of your soundwave art</p></div></Accordion.Header>
+            <Accordion.Body>
+                  <div className='accordion-upload-container image-container'>
+                    <div className='upload-container image-container'><DragAndDropImageInput onImageChange={handleLayoutImageUpdate} /></div>
+                  </div>
+                  {(showFileSizeAlert) &&
+                    <div className='alert-container'>
+                      <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Media size should not exceed 10MB.'}</p>
+                    </div>
+                  }
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        <Accordion defaultActiveKey={['0']} className={`main-accordion-layout ${editMode} hide`}>
           <Accordion.Item eventKey='0'>
             <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
