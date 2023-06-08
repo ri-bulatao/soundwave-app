@@ -95,6 +95,9 @@ p.upload-desc {
   border: 1px dashed #B3B2B2;
   border-radius: 8px;
 }
+.upload-container.image-container {
+  height: 180px;
+}
 .accordion  {
   height: 100%;
   background: #FFFFFF;
@@ -141,6 +144,11 @@ p.upload-desc {
   display: flex;
   flex-direction: column;
   height: 250px;
+  gap: 10px;
+}
+.accordion-upload-container.image-container {
+
+  height: 180px;
 }
 .filename {
   display: flex;
