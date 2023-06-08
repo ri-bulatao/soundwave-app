@@ -45,7 +45,7 @@ const DragAndDropImageInput: React.FC<DragAndDropInputProps> = ({ onImageChange 
       <img src='../src/assets/icons/img-upload.png' alt='' onClick={() => inputRef.current.click()} className='plus-icon' />
       <input
         type='file'
-        accept='audio/*'
+        accept='img/*'
         onChange={(event) => { onImageChange(event.target.files?.[0]) }}
         hidden
         ref={inputRef}

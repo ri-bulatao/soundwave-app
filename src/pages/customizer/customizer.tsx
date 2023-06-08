@@ -15,14 +15,16 @@ export const Customizer: React.FC = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null)
   const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null)
   const [showFileSizeAlert, setShowFileSizeAlert] = useState<boolean>(false)
+  const [showImageSizeAlert, setShowImageSizeAlert] = useState<boolean>(false)
   const [audioFileName, setAudioFileName] = useState<string>('No Files Selected')
   const [selectedFrame, setSelectedFrame] = useState<string>('')
   const [selectedSizing, setSelectedSizing] = useState<string>('')
   const [selectedColor, setSelectedColor] = useState<string>('')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
-  const [editMode, setEditMode] = useState<string>('default-mode')
+  const [editLayoutBackground, setEditLayoutBackground] = useState<boolean>(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [layoutBackgroundImage, setLayoutBackgroundImage] = useState(initialState.defaultLayoutBackgroundImage)
 
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
@@ -39,7 +41,20 @@ export const Customizer: React.FC = () => {
     }
   }
   const handleLayoutImageUpdate = (file: File): void => {
-    console.log(file);
+   
+    if (typeof file !== 'undefined' || file !== null) {
+      const fileSizeInMB = file.size / (1024 * 1024)
+      if (fileSizeInMB <= 5) {
+        const imageReader = new FileReader();
+            imageReader.readAsDataURL(file);
+            imageReader.onloadend = () => {
+              setLayoutBackgroundImage(imageReader.result);
+              setShowImageSizeAlert(false)
+            };
+      } else {
+        setShowImageSizeAlert(true)
+      }
+    }
   }
   const convertToAudioBuffer = useCallback(
     (file: File): void => {
@@ -58,13 +73,13 @@ export const Customizer: React.FC = () => {
     },
     [audioFile]
   )
+  const onImageClick = (event: Event): void => {
+    setEditLayoutBackground(true)
+    console.log(event)
+  }
   const resetAudioFile = (): void => {
     setShowConfirmation(true)
     console.log(showConfirmation)
-  }
-  const handleEditModeSelection = (value: string): void => {
-    setEditMode(value)
-    console.log(value)
   }
   const handleFrameSelection = (value: string): void => {
     setSelectedFrame(value)
@@ -74,7 +89,13 @@ export const Customizer: React.FC = () => {
     setSelectedSizing(value)
     console.log(value)
   }
+  const handleCloseEditLayoutBackground = (): void => {
+    setEditLayoutBackground(false)
+  }
   const handleColorSelection = (value: string): void => {
+    if (selectedColor !== ''){
+      setEditLayoutBackground(true)
+    }
     setSelectedColor(value)
     console.log(value)
   }
@@ -104,22 +125,34 @@ export const Customizer: React.FC = () => {
     <div className='template-container'>
       <div className='col-12 customizer-container'>
         <div className='col-4 input-container'>
-        <Accordion defaultActiveKey={['0']} className={`main-accordion-layout ${editMode}`}>
+        { editLayoutBackground ?
+        <Accordion defaultActiveKey={['0']} className={`main-accordion-layout`}>
           <Accordion.Item eventKey='0'>
             <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div>Background customization </div><p className='upload-desc'>Style soundwave of your soundwave art</p></div></Accordion.Header>
             <Accordion.Body>
                   <div className='accordion-upload-container image-container'>
-                    <div className='upload-container image-container'><DragAndDropImageInput onImageChange={handleLayoutImageUpdate} /></div>
-                  </div>
-                  {(showFileSizeAlert) &&
-                    <div className='alert-container'>
-                      <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Media size should not exceed 10MB.'}</p>
+                    <div className='upload-container image-container'>
+                      <DragAndDropImageInput onImageChange={handleLayoutImageUpdate} />
                     </div>
+                    {layoutBackgroundImage && !showImageSizeAlert ?
+                      <div className='background-image-container'>
+                        <button className="btn btn-primary w-100" onClick={handleCloseEditLayoutBackground}>
+                          Save and Close
+                        </button>
+                      </div> 
+                    : null }
+                  </div>
+                  {showImageSizeAlert ?
+                    <div className='alert-container'>
+                      <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Background size should not exceed 5MB.'}</p>
+                    </div>
+                    : null
                   }
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
-        <Accordion defaultActiveKey={['0']} className={`main-accordion-layout ${editMode} hide`}>
+        :
+        <Accordion defaultActiveKey={['0']} className={`main-accordion-layout`}>
           <Accordion.Item eventKey='0'>
             <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
             <Accordion.Body>
@@ -172,22 +205,23 @@ export const Customizer: React.FC = () => {
              </ul>
             </Accordion.Body>
           </Accordion.Item>
-            </Accordion>
-            <ConfirmationModal
-              isOpen={showConfirmation}
-              message="Are you sure you want to remove the audio you uploaded?"
-              subMessage="You will not be able to undo this action."
-              onConfirm={handleConfirmDelete}
-              onCancel={handleCancelDelete}
-              style={{ display: showConfirmation ? 'block' : 'none' }}
-            />
+          </Accordion>
+          }
+          <ConfirmationModal
+            isOpen={showConfirmation}
+            message="Are you sure you want to remove the audio you uploaded?"
+            subMessage="You will not be able to undo this action."
+            onConfirm={handleConfirmDelete}
+            onCancel={handleCancelDelete}
+            style={{ display: showConfirmation ? 'block' : 'none' }}
+          />
         </div>
         <div className='col-8 canvas-container'>
           <div className='canvas-component'>
             <div className='canvas-header'>
               <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
             </div>
-            <div className={`canvas-content`} style = {{background: `url('${initialState.defaultLayoutBackgroundImage}'`}}>
+            <div className={`canvas-content`} style = {{background: `url('${layoutBackgroundImage}'`}}>
               <div className={`overlay ${selectedColor}`}></div>
               <div className="canvas-text title">
                 <h1>{ canvasTitle }</h1>
@@ -203,10 +237,10 @@ export const Customizer: React.FC = () => {
               </div>
             </div>
               <div className='canvas-footer desktop'>
-                <ColorTemplate options={initialState.colorOptions} handleColorSelection={handleColorSelection}/>
+                <ColorTemplate options={initialState.colorOptions} onImageClick={onImageClick} handleColorSelection={handleColorSelection}/>
               </div>
               <div className='canvas-footer mobile'>
-                <ColorTemplate options={initialState.colorOptionsMobile} handleColorSelection={handleColorSelection}/>
+                <ColorTemplate options={initialState.colorOptionsMobile} onImageClick={onImageClick} handleColorSelection={handleColorSelection}/>
               </div>
           </div>
         </div>

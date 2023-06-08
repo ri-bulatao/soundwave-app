@@ -144,6 +144,7 @@ p.upload-desc {
   display: flex;
   flex-direction: column;
   height: 250px;
+  gap: 10px;
 }
 .accordion-upload-container.image-container {
 
