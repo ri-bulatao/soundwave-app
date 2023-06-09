@@ -1,4 +1,3 @@
-import Canvas from './../../components/Canvas/Canvas'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
@@ -112,6 +111,8 @@ export const Customizer: React.FC = () => {
 
   useEffect(
     () => {
+      setCanvasSubtitle('Enter your title')
+      setCanvasSubtitle('Enter your subtitle here')
       console.log(selectedColor)
       console.log(selectedFrame)
       console.log(selectedSizing)

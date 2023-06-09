@@ -13,7 +13,7 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
   const [state, setState] = useState<DragAndDropInputState>({
     isDragging: false
   })
-  const inputRef = useRef()
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleDragEnter = (event: React.DragEvent<HTMLInputElement>): void => {
     event.preventDefault()
@@ -42,7 +42,7 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <img src='../src/assets/icons/add.png' alt='' onClick={(inputRef: any) => inputRef.current.click()} className='plus-icon' />
+      <img src='../src/assets/icons/add.png' alt='' onClick={() => inputRef?.current?.click()} className='plus-icon' />
       <input
         type='file'
         accept='audio/*'
@@ -50,7 +50,7 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
         hidden
         ref={inputRef}
       />
-      <p onClick={(inputRef: any) => inputRef.current.click()}><strong>Click to upload</strong> or drag & drop</p>
+      <p onClick={() => inputRef?.current?.click()}><strong>Click to upload</strong> or drag & drop</p>
       <span>MP3, MP4 - 10MB</span>
     </div>
   )
