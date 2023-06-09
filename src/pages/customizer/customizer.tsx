@@ -19,7 +19,7 @@ export const Customizer: React.FC = () => {
   const [selectedFrame, setSelectedFrame] = useState<string>('')
   const [selectedSizing, setSelectedSizing] = useState<string>('')
   const [selectedColor, setSelectedColor] = useState<string>('')
-  const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
+  //const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [editLayoutBackground, setEditLayoutBackground] = useState<boolean>(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -227,7 +227,7 @@ export const Customizer: React.FC = () => {
               <div className={`canvas-content`} style={{ background: `url('${layoutBackgroundImage}'` }}>
                 <div className={`overlay ${selectedColor}`}></div>
                 <div className="canvas-text title">
-                  <h1>{canvasTitle}</h1>
+                  {/* <h1>{canvasTitle}</h1> */}
                 </div>
                 <div className="canvas-text subtitle">
                   <h1>{canvasSubtitle}</h1>
