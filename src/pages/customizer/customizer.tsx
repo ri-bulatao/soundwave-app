@@ -48,7 +48,7 @@ export const Customizer: React.FC = () => {
         imageReader.onloadend = () => {
           setLayoutBackgroundImage(imageReader.result as string)
           setShowImageSizeAlert(false)
-        };
+        }
       } else {
         setShowImageSizeAlert(true)
       }
@@ -125,7 +125,7 @@ export const Customizer: React.FC = () => {
       <div className='template-container'>
         <div className='col-12 customizer-container'>
           <div className='col-4 input-container'>
-            {editLayoutBackground 
+            {editLayoutBackground
               ? <Accordion defaultActiveKey={['0']} className={'main-accordion-layout'}>
                 <Accordion.Item eventKey='0'>
                   <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div>Background customization </div><p className='upload-desc'>Style soundwave of your soundwave art</p></div></Accordion.Header>
@@ -134,7 +134,7 @@ export const Customizer: React.FC = () => {
                       <div className='upload-container image-container'>
                         <DragAndDropImageInput onImageChange={handleLayoutImageUpdate} />
                       </div>
-                      {layoutBackgroundImage && !showImageSizeAlert 
+                      {layoutBackgroundImage !== '' && !showImageSizeAlert
                         ? <div className='background-image-container'>
                           <button className="btn btn-primary w-100" onClick={handleCloseEditLayoutBackground}>
                             Save and Close
@@ -142,7 +142,7 @@ export const Customizer: React.FC = () => {
                         </div>
                         : null}
                     </div>
-                    {showImageSizeAlert 
+                    {showImageSizeAlert
                       ? <div className='alert-container'>
                         <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Background size should not exceed 5MB.'}</p>
                       </div>
@@ -206,7 +206,7 @@ export const Customizer: React.FC = () => {
                 </Accordion.Item>
               </Accordion>
             }
-            {showConfirmation 
+            {showConfirmation
               ? <ConfirmationModal
                 isOpen={showConfirmation}
                 message="Are you sure you want to remove the audio you uploaded?"

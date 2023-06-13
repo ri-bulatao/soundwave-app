@@ -19,13 +19,13 @@ const ColorTemplate: React.FC<ToggleButtonProps> = ({ options, handleColorSelect
   return (
     <>
         <div className='template-color'>
-            {options.map((option: any) => (
-                <label className={`col-3 frame-color-selection frame-color ${option.view} ${selectedOption === option.key && 'active'}`} key={option.key}>
+            {options.map((option: Event) => (
+                <label className={`col-3 frame-color-selection frame-color ${option.view} ${selectedOption === option.key && selectedOption === 'active' ? 'active' : ''}`} key={option.key}>
                 <input
                     type="radio"
                     value={option.key}
                     checked={selectedOption === option.key}
-                    onChange={() => handleOptionChange(option)}
+                    onChange={() => { handleOptionChange(option) }}
                 />
                 <img src={option.image} alt={option.key} />
                 </label>

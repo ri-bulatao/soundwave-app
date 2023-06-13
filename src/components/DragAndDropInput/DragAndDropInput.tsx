@@ -35,7 +35,7 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
   }
 
   const handleClick = (): void => {
-    if (inputRef.current) {
+    if (inputRef.current !== null) {
       inputRef.current.click()
     }
   }
