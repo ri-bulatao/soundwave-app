@@ -13,7 +13,7 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
   const [state, setState] = useState<DragAndDropInputState>({
     isDragging: false
   })
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleDragEnter = (event: React.DragEvent<HTMLInputElement>): void => {
     event.preventDefault()
@@ -34,11 +34,11 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
     setState({ isDragging: false })
   }
 
-  const handleClick = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
+  const handleClick = (): void => {
+    if (inputRef.current !== null) {
+      inputRef.current.click()
     }
-  };
+  }
 
   return (
     <div
