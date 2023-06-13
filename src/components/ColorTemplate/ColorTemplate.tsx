@@ -7,9 +7,11 @@ interface ToggleButtonProps {
   onImageClick: (event: Event) => void
 }
 
+interface Event { key: string, image: string, view: string }
+
 const ColorTemplate: React.FC<ToggleButtonProps> = ({ options, handleColorSelection, onImageClick }) => {
   const [selectedOption, setSelectedOption] = useState('option_0')
-  const handleOptionChange = (value: any): any => {
+  const handleOptionChange = (value: Event): void => {
     setSelectedOption(value.key)
     handleColorSelection(value.view + ' ' + value.key)
     onImageClick(value)
