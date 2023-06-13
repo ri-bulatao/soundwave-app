@@ -156,6 +156,7 @@ export const Customizer: React.FC = () => {
                   </Accordion.Item>
                 </Accordion>)
               : (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
+
                 <Accordion.Item eventKey='0'>
                   <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
                   <Accordion.Body>
