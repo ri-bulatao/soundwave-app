@@ -430,3 +430,21 @@ button.accordion-button.collapsed .upload-header .upload-desc {
 button.accordion-button .upload-header .upload-desc {
   display: block;
 }
+.col-8.canvas-container.portrait .canvas-component > div:not(.canvas-header) {
+  width: 550px;
+}
+.col-8.canvas-container.landscape .canvas-component > div:not(.canvas-header) {
+  width: 100%;
+}
+.col-8.canvas-container.portrait .canvas-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.order-preview-container li {
+  text-transform: capitalize;
+}
+.col-8.canvas-container.portrait .template-color {
+  gap: 10px;
+}
