@@ -8,7 +8,7 @@ import RadioButtonToggle from '../../components/RadioButtonToggle/RadioButtonTog
 import LayoutSizing from '../../components/LayoutSizing/LayoutSizing'
 import ColorTemplate from '../../components/ColorTemplate/ColorTemplate'
 import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal'
-import './customizer.css'
+import '~/pages/customizer/customizer.scss'
 
 export const Customizer: React.FC = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null)
@@ -19,12 +19,11 @@ export const Customizer: React.FC = () => {
   const [selectedFrame, setSelectedFrame] = useState<string>('')
   const [selectedSizing, setSelectedSizing] = useState<string>('')
   const [selectedColor, setSelectedColor] = useState<string>('')
-  const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
+  //  const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [editLayoutBackground, setEditLayoutBackground] = useState<boolean>(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [layoutBackgroundImage, setLayoutBackgroundImage] = useState(initialState.defaultLayoutBackgroundImage)
-  const [customizerLayout, setCustomizerLayout] = useState<string>(initialState.customizerLayout)
 
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
@@ -111,11 +110,8 @@ export const Customizer: React.FC = () => {
 
   useEffect(
     () => {
-      setCanvasTitle('Enter your title')
+      setCanvasSubtitle('Enter your title')
       setCanvasSubtitle('Enter your subtitle here')
-      setCustomizerLayout(customizerLayout)
-      console.log(canvasTitle)
-      console.log(canvasSubtitle)
       console.log(selectedColor)
       console.log(selectedFrame)
       console.log(selectedSizing)
@@ -130,35 +126,42 @@ export const Customizer: React.FC = () => {
         <div className='col-12 customizer-container'>
           <div className='col-4 input-container'>
             {editLayoutBackground
-              ? (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
-                  <Accordion.Item eventKey='0'>
-                    <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div>Background customization </div><p className='upload-desc'>Style soundwave of your soundwave art</p></div></Accordion.Header>
-                    <Accordion.Body>
-                      <div className='accordion-upload-container image-container'>
-                        <div className='upload-container image-container'>
-                          <DragAndDropImageInput onImageChange={handleLayoutImageUpdate} />
-                        </div>
-                        {(layoutBackgroundImage !== null && !showImageSizeAlert)
-                          ? (<div className='background-image-container'>
-                              <button className="btn btn-primary w-100" onClick={handleCloseEditLayoutBackground}>
-                                Save and Close
-                              </button>
-                            </div>)
-                          : null}
-                      </div>
-                      {showImageSizeAlert
-                        ? <div className='alert-container'>
-                            <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Background size should not exceed 5MB.'}</p>
-                          </div>
-                        : null
-                      }
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>)
-              : (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
-
+              ? <Accordion defaultActiveKey={['0']} className={'main-accordion-layout'}>
                 <Accordion.Item eventKey='0'>
-                  <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
+                  <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div>Background customization </div><p className='upload-desc' >Style soundwave of your soundwave art</p></div></Accordion.Header>
+                  <Accordion.Body>
+                    <div className='accordion-upload-container image-container'>
+                      <div className='upload-container image-container'>
+                        <DragAndDropImageInput onImageChange={handleLayoutImageUpdate} />
+                      </div>
+                      {layoutBackgroundImage !== '' && !showImageSizeAlert
+                        ? <div className='background-image-container'>
+                          <button className="btn btn-primary w-100" onClick={handleCloseEditLayoutBackground}>
+                            Save and Close
+                          </button>
+                        </div>
+                        : null}
+                    </div>
+                    {showImageSizeAlert
+                      ? <div className='alert-container'>
+                        <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Background size should not exceed 5MB.'}</p>
+                      </div>
+                      : null
+                    }
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+              : <Accordion defaultActiveKey={['0']} className={'main-accordion-layout'}>
+                <Accordion.Item eventKey='0'>
+                  <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}>
+                    <div className='upload-header'>
+                      <div>
+                        <svg className='accordion-icon' width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 14L11 10M11 10L15 14M11 10V19M19 14.7428C20.2215 13.734 21 12.2079 21 10.5C21 7.46243 18.5376 5 15.5 5C15.2815 5 15.0771 4.886 14.9661 4.69774C13.6621 2.48484 11.2544 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 10.5661 1.83545 12.4371 3.18695 13.7935" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg> Upload</div>
+                      <p className='upload-desc'>Upload yuor media to continue:</p>
+                    </div>
+                  </Accordion.Header>
                   <Accordion.Body>
                     <div className='accordion-upload-container'>
                       {(audioBuffer !== null) &&
@@ -180,7 +183,7 @@ export const Customizer: React.FC = () => {
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey='1'>
-                  <Accordion.Header className={`material-and-sizing-header ${(selectedFrame !== '' && selectedSizing !== '' && audioBuffer !== null) ? 'material-sizing-selected' : ''}`} ><div className='upload-header'><div><img src='src/assets/icons/material-sizing.png' alt='icon' /> Material & Sizing</div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
+                  <Accordion.Header className={`material-and-sizing-header ${(selectedFrame !== '' && selectedSizing !== '' && audioBuffer !== null) ? 'material-sizing-selected' : ''}`} ><div className='upload-header'><div><img src='src/assets/icons/svg/material.svg' alt='icon' className='accordion-icon' /> Material & Sizing</div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
                   <Accordion.Body>
                     <div className="material-and-sizing-container">
                       <p>Frame Type</p>
@@ -191,11 +194,11 @@ export const Customizer: React.FC = () => {
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey='2'>
-                  <Accordion.Header><div className='upload-header'><div><img src='src/assets/icons/preview.png' alt='icon' /> Order Review</div><p className='upload-desc'>Here is your order details:</p></div></Accordion.Header>
+                  <Accordion.Header><div className='upload-header'><div><img src='src/assets/icons/svg/order.svg' alt='icon' className='accordion-icon'/> Order Review</div><p className='upload-desc'>Here is your order details:</p></div></Accordion.Header>
                   <Accordion.Body>
                     <ul className="order-preview-container">
                       <li className="order-item">
-                        ORIENTATION<strong>{customizerLayout}</strong>
+                        ORIENTATION<strong>{'Landscapre'}</strong>
                       </li>
                       <li className="order-item">
                         FRAME TYPE<strong>{selectedFrame}</strong>
@@ -209,24 +212,25 @@ export const Customizer: React.FC = () => {
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
-              </Accordion>)
+              </Accordion>
             }
-            {showConfirmation &&
-              <ConfirmationModal
+            {showConfirmation
+              ? <ConfirmationModal
                 isOpen={showConfirmation}
                 message="Are you sure you want to remove the audio you uploaded?"
                 subMessage="You will not be able to undo this action."
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
               />
+              : null
             }
           </div>
-          <div className={`col-8 canvas-container ${customizerLayout}`}>
+          <div className='col-8 canvas-container'>
             <div className='canvas-component'>
               <div className='canvas-header'>
                 <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
               </div>
-              <div className='canvas-content' style={{ background: `url('${layoutBackgroundImage}'` }}>
+              <div className={'canvas-content'} style={{ background: `url('${layoutBackgroundImage}'` }}>
                 <div className={`overlay ${selectedColor}`}></div>
                 <div className="canvas-text title">
                   {/* <h1>{canvasTitle}</h1> */}
