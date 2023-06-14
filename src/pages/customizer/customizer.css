@@ -25,20 +25,26 @@
     width: 66.66666667% !important;
 }
 @media (max-width: 980px) {
-    .customizer-container{
-        display: flex;
-        flex-direction: column-reverse;
-    }
-    .col-8.canvas-container {
-        flex: 0 0 auto;
-        width: 100% !important;
-    }
-    .input-container {
-        width: 100%;
-    }
-    .canvas-container {
-        height: 100%;
-    }
+  .customizer-container{
+      display: flex;
+      flex-direction: column-reverse;
+  }
+  .col-8.canvas-container {
+      flex: 0 0 auto;
+      width: 100% !important;
+  }
+  .input-container {
+      width: 100%;
+  }
+  .canvas-container {
+      height: 100%;
+  }
+  .main-accordion-layout.accordion {
+    min-height: 750px;
+  }
+  .col-8.canvas-container.portrait .canvas-component > div:not(.canvas-header) {
+    width: 100% !important;
+  }   
 }
 
 /* Accordion CSS */
@@ -99,6 +105,7 @@ p.upload-desc {
   height: 180px;
 }
 .accordion  {
+  position: relative;
   height: 100%;
   background: #FFFFFF;
   border: 1px solid #EFEFEF;
@@ -447,4 +454,15 @@ button.accordion-button .upload-header .upload-desc {
 }
 .col-8.canvas-container.portrait .template-color {
   gap: 10px;
+}
+.accordion-button-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+}
+.accordion-button-container .btn {
+  font-size: 16px;
+  padding: 12px 24px;
 }
