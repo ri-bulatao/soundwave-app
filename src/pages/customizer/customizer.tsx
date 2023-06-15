@@ -30,7 +30,6 @@ export const Customizer: React.FC = () => {
   const [layoutBackgroundImage, setLayoutBackgroundImage] = useState(initialState.defaultLayoutBackgroundImage)
   const [customizerLayout, setCustomizerLayout] = useState<string>(initialState.customizerLayout)
 
-
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
   const dispatch = useDispatch()
@@ -98,9 +97,9 @@ export const Customizer: React.FC = () => {
     console.log(value)
   }
   // @ts-expect-error: will be used soon for out box closing
-  const handleCloseEditLayoutBackground = (): void => {
-    setEditLayoutBackground(false)
-  }
+  // const handleCloseEditLayoutBackground = (): void => {
+  //   setEditLayoutBackground(false)
+  // }
   const handleColorSelection = (value: string): void => {
     if (selectedColor !== '') {
       setEditLayoutBackground(true)
@@ -121,7 +120,7 @@ export const Customizer: React.FC = () => {
 
   useEffect(
     () => {
-      setCanvasSubtitle('Enter your title')
+      setCanvasTitle('Enter your title')
       setCanvasSubtitle('Enter your subtitle here')
       setCustomizerLayout(customizerLayout)
       console.log(canvasTitle)
@@ -144,7 +143,6 @@ export const Customizer: React.FC = () => {
             { editLayoutBackground
               ? (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
                   <Accordion.Item eventKey='0'>
-                    
                   <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}>
                     <div className='upload-header'>
                       <div>
