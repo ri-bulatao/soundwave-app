@@ -138,7 +138,7 @@ p.upload-desc {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%; 
+  height: 100%;
 }
 .accordion-upload-container {
   display: flex;
@@ -270,7 +270,7 @@ button.accordion-button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;  
+    gap: 30px;
     position: relative;
     overflow: hidden;
     z-index: 0;
@@ -290,7 +290,7 @@ button.accordion-button {
     border: 1px dashed #FFFFFF;
     border-radius: 8px;
     color: #FFFFFF;
-    padding: 10px 40px;  
+    padding: 10px 40px;
 }
 .canvas-text.title {
     font-family: 'Cormorant';
@@ -307,7 +307,7 @@ button.accordion-button {
     font-weight: 500;
     font-size: 50px;
     line-height: 61px;
-    
+
 }
 .canvas-text.subtitle {
     display: flex;
@@ -425,7 +425,7 @@ h2.material-and-sizing-header.material-sizing-selected button::after {
 }
 .upload-header.file-uploaded .upload-desc,
 button.accordion-button.collapsed .upload-header .upload-desc {
-  display: none; 
+  display: none;
 }
 button.accordion-button .upload-header .upload-desc {
   display: block;
@@ -447,4 +447,28 @@ button.accordion-button .upload-header .upload-desc {
 }
 .col-8.canvas-container.portrait .template-color {
   gap: 10px;
+}
+
+.template-action-container {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-template-button {
+  font-family: 'SF Pro';
+  font-style: normal;
+  font-weight: 590;
+  font-size: 14px;
+  line-height: 24px;
+  background: #FFFFFF;
+  color: #222222;
+  border: 1px solid #EFEFEF;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.close-template-button {
+  border: none;
+  background-color: transparent;
 }
