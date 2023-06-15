@@ -134,13 +134,12 @@ export const Customizer: React.FC = () => {
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
         </div>
         <div className='col-12 customizer-container'>
-          {
-            controls.showTemplates
+          { controls.showTemplates
             ? <div className="col-4 input-container">
                 <Templates />
               </div>
             : <div className='col-4 input-container'>
-            {editLayoutBackground
+            { editLayoutBackground
               ? (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
                   <Accordion.Item eventKey='0'>
                     <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div>Background customization </div><p className='upload-desc'>Style soundwave of your soundwave art</p></div></Accordion.Header>
@@ -149,7 +148,7 @@ export const Customizer: React.FC = () => {
                         <div className='upload-container image-container'>
                           <DragAndDropImageInput onImageChange={handleLayoutImageUpdate} />
                         </div>
-                        {(layoutBackgroundImage !== null && !showImageSizeAlert)
+                        { (layoutBackgroundImage !== null && !showImageSizeAlert)
                           ? (<div className='background-image-container'>
                               <button className="btn btn-primary w-100" onClick={handleCloseEditLayoutBackground}>
                                 Save and Close
@@ -157,7 +156,7 @@ export const Customizer: React.FC = () => {
                             </div>)
                           : null}
                       </div>
-                      {showImageSizeAlert
+                      { showImageSizeAlert
                         ? <div className='alert-container'>
                             <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Background size should not exceed 5MB.'}</p>
                           </div>
@@ -172,7 +171,7 @@ export const Customizer: React.FC = () => {
                   <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}><div className='upload-header'><div><img src='src/assets/icons/upload.png' alt='icon' /> Upload </div><p className='upload-desc'>Upload yuor media to continue:</p></div></Accordion.Header>
                   <Accordion.Body>
                     <div className='accordion-upload-container'>
-                      {(audioBuffer !== null) &&
+                      { (audioBuffer !== null) &&
                         <div className='upload-wave-container'>
                           <WaveCanvas id='acc_sound_wave' waveHeight={initialState.waveHeight} audioBuffer={audioBuffer} width={initialState.canvasWidth} height={initialState.canvasHeight} />
                           <div className='filename'>
@@ -183,7 +182,7 @@ export const Customizer: React.FC = () => {
                         </div>}
                       {(audioBuffer === null) && <div className='upload-container'><DragAndDropInput onFileChange={handleAudioChange} /></div>}
                     </div>
-                    {(showFileSizeAlert) &&
+                    { (showFileSizeAlert) &&
                       <div className='alert-container'>
                         <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Media size should not exceed 10MB.'}</p>
                       </div>
