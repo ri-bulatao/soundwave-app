@@ -5,7 +5,7 @@ import type { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { load } from '../../redux/reducers/templates'
 import { templatesData } from '../../config/initialTemplates'
-import TemplateCard from '../../components/TemplateCard'
+import TemplateCard from '../TemplateCard'
 
 const Templates: React.FC = () => {
   const { templates } = useSelector((state: RootState) => state.templates)
@@ -18,7 +18,7 @@ const Templates: React.FC = () => {
   return (
     <div className="container">
       <div className="title-container">
-        <h1 className="title">Templates (20)</h1>
+        <h1 className="title">Templates ({ templates.length })</h1>
         <button className="filter">
           Filters
           <img src="/src/assets/icons/filter.png" alt="" className="icon" />
@@ -31,8 +31,12 @@ const Templates: React.FC = () => {
           ))
         }
       </div>
-      <div className="action-container">
+      <div className="loader-container">
         <button className="load-more">Load more</button>
+      </div>
+      <div className="action-container">
+        <button className="preview">Preview</button>
+        <button className="continue">Continue</button>
       </div>
     </div>
   )

@@ -8,6 +8,10 @@ import RadioButtonToggle from '../../components/RadioButtonToggle/RadioButtonTog
 import LayoutSizing from '../../components/LayoutSizing/LayoutSizing'
 import ColorTemplate from '../../components/ColorTemplate/ColorTemplate'
 import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal'
+import Templates from '../../components/Templates'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../../redux/store'
+import { toggleShowTemplates } from '../../redux/reducers/controls'
 import './customizer.css'
 
 export const Customizer: React.FC = () => {
@@ -25,6 +29,10 @@ export const Customizer: React.FC = () => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [layoutBackgroundImage, setLayoutBackgroundImage] = useState(initialState.defaultLayoutBackgroundImage)
   const [customizerLayout, setCustomizerLayout] = useState<string>(initialState.customizerLayout)
+
+  // Redux state controls
+  const { controls } = useSelector((state: RootState) => state.controls)
+  const dispatch = useDispatch()
 
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
@@ -121,8 +129,17 @@ export const Customizer: React.FC = () => {
   return (
     <>
       <div className='template-container'>
+        <div className="template-action-container">
+          <button onClick={() => dispatch(toggleShowTemplates(true))} className="add-template-button">Template gallery</button>
+          <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
+        </div>
         <div className='col-12 customizer-container'>
-          <div className='col-4 input-container'>
+          {
+            controls.showTemplates
+            ? <div className="col-4 input-container">
+                <Templates />
+              </div>
+            : <div className='col-4 input-container'>
             {editLayoutBackground
               ? (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
                   <Accordion.Item eventKey='0'>
@@ -215,6 +232,7 @@ export const Customizer: React.FC = () => {
               />
             }
           </div>
+          }
           <div className={`col-8 canvas-container ${customizerLayout}`}>
             <div className='canvas-component'>
               <div className='canvas-header'>

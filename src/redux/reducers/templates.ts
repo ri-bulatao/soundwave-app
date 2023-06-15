@@ -11,7 +11,7 @@ const initialState: TemplatesState = {
 }
 
 export const templatesSlice = createSlice({
-  name: 'counter',
+  name: 'templates',
   initialState,
   reducers: {
     load: (state: TemplatesState, action: PayloadAction<Template[]>) => {

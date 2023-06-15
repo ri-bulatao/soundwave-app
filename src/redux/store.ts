@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import templatesReducer from './reducers/templates'
+import controlsReducer from './reducers/controls'
 
 export const store = configureStore({
   reducer: {
-    templates: templatesReducer
+    templates: templatesReducer,
+    controls: controlsReducer
   }
 })
 

@@ -17,3 +17,7 @@ export interface Template {
   }
   colors: any[]
 }
+
+export interface Controls {
+  showTemplates: boolean
+}
