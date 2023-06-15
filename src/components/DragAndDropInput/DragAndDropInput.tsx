@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import './DragAndDropInput.css'
+import './DragAndDropInput.scss'
 
 interface DragAndDropInputProps {
   onFileChange: (file: File) => void
@@ -48,7 +48,7 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <img src='../src/assets/icons/add.png' alt='' onClick={handleClick} className='plus-icon' />
+      <img src='../src/assets/icons/svg/add-circle-dark.svg' alt='' onClick={handleClick} className='plus-icon' />
       <input
         type='file'
         accept='audio/*'
@@ -56,8 +56,8 @@ const DragAndDropInput: React.FC<DragAndDropInputProps> = ({ onFileChange }) => 
         hidden
         ref={inputRef}
       />
-      <p onClick={handleClick}><strong>Click to upload</strong> or drag & drop</p>
-      <span>MP3, MP4 - 10MB</span>
+      <p onClick={handleClick}>Click to upload <span className='drag-drop-title-light'>or drag & drop</span></p>
+      <span className='drag-drop-subtitle'>MP3, MP4  &middot;  10MB</span>
     </div>
   )
 }
