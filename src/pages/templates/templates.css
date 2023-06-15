@@ -1,0 +1,61 @@
+.title-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 590;
+    font-size: 40px;
+    line-height: 56px;
+    color: #222222;
+}
+
+.filter {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 590;
+    font-size: 14px;
+    line-height: 24px;
+    color: #222222;
+    padding: 8px 16px;
+    display: block;
+    border: 1px solid #222222;
+    text-decoration: none;
+    border-radius: 10px
+}
+
+.filter .icon {
+    margin-left: 10px;
+}
+
+.cards-container {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-top: 32px;
+}
+
+.action-container {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.action-container .load-more {
+    background: #222222;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 32px;
+    padding: 12px 24px;
+    border: none;
+}
