@@ -124,8 +124,16 @@ export const Customizer: React.FC = () => {
   return (
     <>
       <div className='template-container'>
+        <div className='template-header'>
+          <button className="btn-standard">
+            Template gallery
+          </button>
+          <button className='btn-circle'>
+            <img src="src/assets/icons/svg/close.svg" alt="close-icon" />
+          </button>
+        </div>
         <div className='col-12 customizer-container'>
-          <div className='col-4 input-container'>
+          <div className='col-5 input-container'>
             {editLayoutBackground
               ? <Accordion defaultActiveKey={['0']} className={'main-accordion-layout'}>
                 <Accordion.Item eventKey='0'>
@@ -135,13 +143,6 @@ export const Customizer: React.FC = () => {
                       <div className='upload-container image-container'>
                         <DragAndDropImageInput onImageChange={handleLayoutImageUpdate} />
                       </div>
-                      {layoutBackgroundImage !== '' && !showImageSizeAlert
-                        ? <div className='background-image-container'>
-                          <button className="btn btn-primary w-100" onClick={handleCloseEditLayoutBackground}>
-                            Save and Close
-                          </button>
-                        </div>
-                        : null}
                     </div>
                     {showImageSizeAlert
                       ? <div className='alert-container'>
@@ -161,7 +162,7 @@ export const Customizer: React.FC = () => {
                         <svg className='accordion-icon' width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M7 14L11 10M11 10L15 14M11 10V19M19 14.7428C20.2215 13.734 21 12.2079 21 10.5C21 7.46243 18.5376 5 15.5 5C15.2815 5 15.0771 4.886 14.9661 4.69774C13.6621 2.48484 11.2544 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 10.5661 1.83545 12.4371 3.18695 13.7935" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg> Upload</div>
-                      <p className='upload-desc'>Upload yuor media to continue:</p>
+                      <p className='upload-desc'>Upload your media to continue:</p>
                     </div>
                   </Accordion.Header>
                   <Accordion.Body>
@@ -172,7 +173,9 @@ export const Customizer: React.FC = () => {
                           <div className='filename'>
                             <img src='src/assets/icons/play-icon.png' alt='' />
                             <p className='audio-name'>{audioFileName}</p>
-                            <img src='src/assets/icons/delete-icon.png' onClick={resetAudioFile} alt='' />
+                            <button className='btn-circle btn-custom-delete' onClick={resetAudioFile}>
+                              <img src='src/assets/icons/svg/delete.svg'  alt='' />
+                            </button>
                           </div>
                         </div>}
                       {(audioBuffer === null) && <div className='upload-container'><DragAndDropInput onFileChange={handleAudioChange} /></div>}
@@ -236,6 +239,18 @@ export const Customizer: React.FC = () => {
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
+                {!editLayoutBackground ?
+                  <div className='input-btns col-12'>
+                    <button className='btn-transparent col-6'>
+                      Preview
+                    </button>
+                    <button className='btn btn-primary col-6'>
+                      Continue
+                    </button>
+                  </div>
+                  : 
+                  null
+                }
               </Accordion>
             }
             {showConfirmation
@@ -248,8 +263,9 @@ export const Customizer: React.FC = () => {
               />
               : null
             }
+            
           </div>
-          <div className='col-8 canvas-container'>
+          <div className='col-7 canvas-container'>
             <div className='canvas-component'>
               <div className='canvas-header'>
                 <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />

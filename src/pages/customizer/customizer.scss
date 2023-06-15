@@ -1,5 +1,24 @@
 @import "~/styles/var.scss";
 
+.template-container {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'SF Pro';
+  font-style: normal;
+  padding: 24px;
+  --bs-primary: #222222;
+  --bs-light: #9C9C9C;
+
+  width: 100%;
+  height: 100%;
+}
+.template-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
 .customizer-tool-container {
     box-sizing: border-box;
     display: flex;
@@ -12,7 +31,7 @@
 }
 .canvas-container {
     box-sizing: border-box;
-    width: 100%;
+    // width: 100%;
     height: 920px;
     background: #FFFFFF;
     border: 1px solid #EFEFEF;
@@ -20,26 +39,13 @@
 }
 .customizer-container {
     display: flex;
-    gap: 10px;
-}
-.col-8.canvas-container {
-    flex: 0 0 auto;
-    width: 66.66666667% !important;
-}
-@media (max-width: 980px) {
-    .customizer-container{
-        display: flex;
-        flex-direction: column-reverse;
-    }
-    .col-8.canvas-container {
-        flex: 0 0 auto;
-        width: 100% !important;
-    }
-    .input-container {
-        width: 100%;
+    .input-container  {
+      flex: 1 1 auto;
+      margin-right: 12px;
     }
     .canvas-container {
-        height: 100%;
+      flex: 1 1 auto;
+      margin-left: 12px;
     }
 }
 
@@ -78,6 +84,7 @@ p.upload-desc {
   gap: 5px;
   line-height: 18px;
 }
+.accordion-body { padding: 24px; }
 .accordion-button:focus {
   border-color: transparent;
   box-shadow: none;
@@ -86,7 +93,7 @@ p.upload-desc {
 button.accordion-button {
   box-shadow: none;
   gap: 10px;
-  font-family: 'Inter';
+  font-family: 'SF Pro';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -94,34 +101,44 @@ button.accordion-button {
   color: $gray-600 !important;
   background-color: transparent !important;
   padding: 24px;
-  .accordion-icon path { stroke: $gray-600 !important; }
+  .accordion-icon {
+    height: 24px;
+    width: 24px;
+
+    path { stroke: $gray-600 !important; }
+  }
   &::after { display: none; }
   &[aria-expanded="true"] { 
     color: $font-color-dark !important; 
     .accordion-icon path { stroke: $font-color-dark !important; }
   }
-  .accordion-icon { margin-right: 8px; }
+  .accordion-icon { margin-right: 12px; }
 }
 .accordion-item, .accordion-button:not(.collapsed) {  
   border: none !important;
   box-shadow: none !important;
   border-bottom: 1px solid #EFEFEF !important;
 }
-.upload-container.image-container {
-  height: 180px;
+.upload-container {
+  height: 100%;
+  .image-container {
+    height: 180px;
+  }
 }
 .accordion  {
   height: 100%;
   background: #FFFFFF;
   border: 1px solid #EFEFEF;
   border-radius: 8px;
-  padding: 0px;
   font-family: 'SF Pro';
   font-style: normal;
   font-weight: 510;
   font-size: 16px;
   line-height: 24px;
   color: #B3B2B2;
+
+  padding: 0px 0px 120px 0px;
+  position: relative;
 }
 .alert-container {
   display: flex;
@@ -155,7 +172,7 @@ button.accordion-button {
 .accordion-upload-container {
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 280px;
   gap: 10px;
 }
 .accordion-upload-container.image-container {
@@ -173,15 +190,7 @@ button.accordion-button {
   width: 100%;
   margin: 0;
 }
-.filename img:last-child:hover {
-  box-shadow: 0px 0px 10px 0px #a3a3a3;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.plus-icon {
-  width: 30px;
-  margin-bottom: 10px;
-}
+.plus-icon { margin-bottom: 24px; }
 .frame-selection.active {
   position: relative;
 }
@@ -220,7 +229,7 @@ button.accordion-button {
   position: absolute;
 }
 .material-and-sizing-container p {
-  font-family: 'Inter';
+  font-family: 'SF Pro';
   font-style: normal;
   font-weight: 510;
   font-size: 16px;
@@ -233,12 +242,10 @@ button.accordion-button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px 20px;
-    width: 100%;
+    padding: 0px 24px;
     height: 100%;
     background: #FFFFFF;
     border: 1px solid #EFEFEF;
-    border-radius: 8px;
 }
 .canvas-header {
     height: 76px;
@@ -251,7 +258,7 @@ button.accordion-button {
     justify-content: space-between;
 }
 .canvas-header p {
-    font-family: 'Inter';
+    font-family: 'SF Pro';
     margin-bottom: 0px;
     font-style: normal;
     font-weight: 510;
@@ -260,7 +267,7 @@ button.accordion-button {
     color: #222222;
 }
 .canvas-content {
-    height: 650px;
+    height: 700px;
     width: 100%;
     /* background: url(/src/assets/img/temp2.png);
     background: #625f5f; */
@@ -273,7 +280,8 @@ button.accordion-button {
     gap: 30px;  
     position: relative;
     overflow: hidden;
-    z-index: 0;
+    border-radius: 8px !important;
+    overflow: hidden;
 }
 .canvas-footer {
     height: 200px;
@@ -287,7 +295,7 @@ button.accordion-button {
     display: none;
 }
 .canvas-text {
-    border: 1px dashed #FFFFFF;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='white' stroke-width='3' stroke-dasharray='10%2c 12' stroke-dashoffset='20' stroke-linecap='square'/%3e%3c/svg%3e");
     border-radius: 8px;
     color: #FFFFFF;
     padding: 10px 40px;  
@@ -344,49 +352,6 @@ button.accordion-button {
 .overlay.mobile.option_3 {
   background: #d6b0ff82;
 }
-@media (max-width: 980px) {
-    .canvas-content {
-        height: 450px;
-        gap: 10px;
-    }
-    .canvas-container {
-        height: 100%;
-        padding: 10px;
-        border-radius: 8px;
-    }
-    .canvas-footer.mobile {
-        display: flex;
-        height: 100%;
-        position: relative;
-        bottom: 0px;
-    }
-    .template-color {
-        margin: 0;
-        position: absolute;
-        top: -40px;
-        left: 10px;
-        gap: 10px;
-    }
-    .canvas-footer.mobile .frame-color-selection.frame-color {
-        height: 30px;
-    }
-    .canvas-footer.desktop {
-        display: none;
-    }
-    .mobile label.col-3.frame-color-selection.frame-color.active img {
-        border: 3px solid #fff;
-        box-shadow: 0px 0px 10px 0px #fff;
-        border-radius: 7px;
-        box-sizing: border-box;
-    }
-    .mobile label.col-3.frame-color-selection img {
-        border-radius: 5px;
-        border: 1px solid #fff;
-    }
-    .canvas-text.title h1 {
-        font-size: 30px;
-    }
-}
 /* Order Review CSS */
 ul.order-preview-container {
   padding: 0;
@@ -396,9 +361,9 @@ ul.order-preview-container li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 12px 10px;
+  padding: 16px 24px;
   justify-content: space-between;
-  font-family: 'Inter';
+  font-family: 'SF Pro';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -430,13 +395,13 @@ button.accordion-button.collapsed .upload-header .upload-desc {
 button.accordion-button .upload-header .upload-desc {
   display: block;
 }
-.col-8.canvas-container.portrait .canvas-component > div:not(.canvas-header) {
+.col-7.canvas-container.portrait .canvas-component > div:not(.canvas-header) {
   width: 550px;
 }
-.col-8.canvas-container.landscape .canvas-component > div:not(.canvas-header) {
+.col-7.canvas-container.landscape .canvas-component > div:not(.canvas-header) {
   width: 100%;
 }
-.col-8.canvas-container.portrait .canvas-component {
+.col-7.canvas-container.portrait .canvas-component {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -445,6 +410,91 @@ button.accordion-button .upload-header .upload-desc {
 .order-preview-container li {
   text-transform: capitalize;
 }
-.col-8.canvas-container.portrait .template-color {
+.col-7.canvas-container.portrait .template-color {
   gap: 10px;
+}
+.btn-custom-delete {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  background: $gray-200;
+
+  width: 32px;
+  height: 32px;
+  &:hover {
+    box-shadow: 0px 0px 6px 0px #a3a3a367;
+  }
+}
+.input-btns {
+  display: flex;
+  flex-direction: row;
+
+  padding: 24px;
+
+  position: absolute;
+  bottom: 0;
+  * {
+    flex: 1 1 auto;
+    margin: 8px;
+  }
+}
+
+// {Media Queries - Reponsiveness}
+@media (max-width: 980px) {
+  .customizer-container{
+      display: flex;
+      flex-direction: column-reverse;
+  }
+  .col-7.canvas-container {
+      flex: 0 0 auto;
+      width: 100% !important;
+  }
+  .input-container {
+      width: 100%;
+  }
+  .canvas-container {
+      height: 100%;
+  }
+  .canvas-content {
+    height: 450px;
+    gap: 10px;
+  }
+  .canvas-container {
+      height: 100%;
+      padding: 10px;
+      border-radius: 8px;
+  }
+  .canvas-footer.mobile {
+      display: flex;
+      height: 100%;
+      position: relative;
+      bottom: 0px;
+  }
+  .template-color {
+      margin: 0;
+      position: absolute;
+      top: -40px;
+      left: 10px;
+      gap: 10px;
+  }
+  .canvas-footer.mobile .frame-color-selection.frame-color {
+      height: 30px;
+  }
+  .canvas-footer.desktop {
+      display: none;
+  }
+  .mobile label.col-3.frame-color-selection.frame-color.active img {
+      border: 3px solid #fff;
+      box-shadow: 0px 0px 10px 0px #fff;
+      border-radius: 7px;
+      box-sizing: border-box;
+  }
+  .mobile label.col-3.frame-color-selection img {
+      border-radius: 5px;
+      border: 1px solid #fff;
+  }
+  .canvas-text.title h1 {
+      font-size: 30px;
+  }
 }
