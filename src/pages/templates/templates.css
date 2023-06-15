@@ -59,3 +59,27 @@
     padding: 12px 24px;
     border: none;
 }
+
+@media only screen and (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);   
+   }
+}
+
+@media only screen and (max-width: 414px) {
+    .title-container .title {
+        font-weight: 510;
+        font-size: 24px;
+        line-height: 32px;
+    }
+    
+    .filter {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    
+    .cards-container {
+         grid-template-columns: 1fr;
+    }
+}

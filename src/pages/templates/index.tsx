@@ -24,7 +24,7 @@ const Templates: React.FC = () => {
             </div>
             <div className="cards-container">
                 {
-                    templates.map(template => <TemplateCard template={template} />)
+                    templates.map(template => <TemplateCard template={template} key={template.id} />)
                 }
             </div>
             <div className="action-container">  

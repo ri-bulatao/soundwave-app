@@ -18,7 +18,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({template}) => {
             <div className="color-scheme-container">
                 {
                     template.colors.map(color => (
-                        <div className="color" style={{ backgroundColor: color.color }}></div>
+                        <div className="color" style={{ backgroundColor: color.color }} key={color.id}></div>
                     ))
                 }
             </div>
