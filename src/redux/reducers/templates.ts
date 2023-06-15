@@ -1,23 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { Template } from '../../common/types'
+import type { Template } from '../../common/types'
 
 export interface TemplatesState {
-  templates: ReadonlyArray<Template>
+  templates: Template[]
 }
 
 const initialState: TemplatesState = {
-    templates: [],
+  templates: []
 }
 
 export const templatesSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    load: (state: TemplatesState, action: PayloadAction<ReadonlyArray<Template>>) => {
-        state.templates = action.payload
-    },
-  },
+    load: (state: TemplatesState, action: PayloadAction<Template[]>) => {
+      state.templates = action.payload
+    }
+  }
 })
 
 // Action creators are generated for each case reducer function

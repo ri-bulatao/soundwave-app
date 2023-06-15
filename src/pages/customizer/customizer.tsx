@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
 import DragAndDropInput from '../../components/DragAndDropInput/DragAndDropInput'
@@ -114,6 +114,7 @@ export const Customizer: React.FC = () => {
       setCanvasTitle('Enter your title')
       setCanvasSubtitle('Enter your subtitle here')
       setCustomizerLayout(customizerLayout)
+      console.log(canvasTitle)
     },
     [audioFile, selectedFrame, selectedSizing, showConfirmation]
   )
