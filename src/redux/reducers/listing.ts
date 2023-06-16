@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { Listing, Frame, Size } from '../../common/types'
+import type { Listing, Frame, Size, Color } from '../../common/types'
 
 export interface ListingState {
   listing: Listing
@@ -9,7 +9,8 @@ export interface ListingState {
 const initialState: ListingState = {
   listing: {
     frames: [],
-    sizes: []
+    sizes: [],
+    colors: []
   }
 }
 
@@ -22,10 +23,13 @@ export const listingSlice = createSlice({
     },
     setSizes: (state: ListingState, action: PayloadAction<Size[]>) => {
       state.listing.sizes = action.payload
+    },
+    setColors: (state: ListingState, action: PayloadAction<Color[]>) => {
+      state.listing.colors = action.payload
     }
   }
 })
 
-export const { setFrames, setSizes } = listingSlice.actions
+export const { setFrames, setSizes, setColors } = listingSlice.actions
 
 export default listingSlice.reducer

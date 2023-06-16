@@ -21,7 +21,6 @@ export const Customizer: React.FC = () => {
   const [showFileSizeAlert, setShowFileSizeAlert] = useState<boolean>(false)
   const [showImageSizeAlert, setShowImageSizeAlert] = useState<boolean>(false)
   const [audioFileName, setAudioFileName] = useState<string>('No Files Selected')
-  const [selectedColor, setSelectedColor] = useState<string>('')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
   const [editLayoutBackground, setEditLayoutBackground] = useState<boolean>(false)
@@ -92,13 +91,7 @@ export const Customizer: React.FC = () => {
   // const handleCloseEditLayoutBackground = (): void => {
   //   setEditLayoutBackground(false)
   // }
-  const handleColorSelection = (value: string): void => {
-    if (selectedColor !== '') {
-      setEditLayoutBackground(true)
-    }
-    setSelectedColor(value)
-    console.log(value)
-  }
+
   const handleConfirmDelete = (): void => {
     setAudioFile(null)
     setAudioBuffer(null)
@@ -131,7 +124,7 @@ export const Customizer: React.FC = () => {
                 <Templates />
               </div>
             : <div className='col-5 input-container'>
-            { editLayoutBackground
+            { controls.editBackground
               ? (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
                   <Accordion.Item eventKey='0'>
                   <Accordion.Header className={`upload-header ${audioBuffer !== null ? 'file-uploaded' : ''}`}>
@@ -274,7 +267,7 @@ export const Customizer: React.FC = () => {
                 <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
               </div>
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
-                <div className={`overlay ${selectedColor}`}></div>
+                <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
                 <div className="canvas-text title">
                   {/* <h1>{canvasTitle}</h1> */}
                 </div>
@@ -289,10 +282,10 @@ export const Customizer: React.FC = () => {
                 </div>
               </div>
               <div className='canvas-footer desktop'>
-                <ColorTemplate options={initialState.colorOptions} onImageClick={onImageClick} handleColorSelection={handleColorSelection} />
+                <ColorTemplate view="desktop" />
               </div>
               <div className='canvas-footer mobile'>
-                <ColorTemplate options={initialState.colorOptionsMobile} onImageClick={onImageClick} handleColorSelection={handleColorSelection} />
+                <ColorTemplate view="mobile" />
               </div>
             </div>
           </div>

@@ -20,16 +20,12 @@ export interface Template {
 
 export interface Controls {
   showTemplates: boolean
+  editBackground: boolean
 }
 
 export interface Customizer {
   layout: string
   backgroundImage: string
-}
-
-export interface Listing {
-  frames: Frame[]
-  sizes: Size[]
 }
 
 export interface Size {
@@ -44,7 +40,21 @@ export interface Frame {
   image: string
 }
 
+export interface Color {
+  id: number
+  key: string
+  image: string
+  view: string
+}
+
+export interface Listing {
+  frames: Frame[]
+  sizes: Size[]
+  colors: Color[]
+}
+
 export interface Selected {
   frame: Frame
   size: Size
+  color: Color
 }
