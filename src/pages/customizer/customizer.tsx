@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
 import DragAndDropInput from '../../components/DragAndDropInput/DragAndDropInput'
@@ -10,8 +11,7 @@ import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationMo
 import Templates from '../../components/Templates'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import type { CustomCanvas } from '../../common/types'
-import { toggleShowTemplates } from '../../redux/reducers/controls'
+import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/controls'
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import FrameOptions from '../../components/FrameOptions'
 import { updateOrientation } from '../../redux/reducers/canvas'
@@ -85,28 +85,15 @@ export const Customizer: React.FC = () => {
     console.log(showConfirmation)
   }
 
-  const handleFrameSelection = (value: string): void => {
-    setSelectedFrame(value)
-    console.log(value)
-  }
-  const handleSizingSelection = (value: string): void => {
-    setSelectedSizing(value)
-    console.log(value)
-  }
-  const handleCloseEditLayoutBackground = (canvas: CustomCanvas): void => {
-    const classList = [...canvas.target.classList]
+  const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.target as HTMLDivElement
+    console.log(target)
+    const classList = [...target.classList]
     const filteredClassList = classList.filter((element: string) => {
-      const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input']
+      const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
       return canvasClass.includes(element)
     })
-    setEditLayoutBackground(filteredClassList.length > 0)
-  }
-  const handleColorSelection = (value: string): void => {
-    if (selectedColor !== '') {
-      setEditLayoutBackground(true)
-    }
-    setSelectedColor(value)
-    console.log(value)
+    dispatch(toggleEditBackground(filteredClassList.length > 0))
   }
   const handleConfirmDelete = (): void => {
     setAudioFile(null)
@@ -256,7 +243,7 @@ export const Customizer: React.FC = () => {
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
-                {!controls.editBackground && !controls.showTemplates &&
+                {(!controls.showTemplates) &&
                   <div className='input-btns col-12'>
                     <button className='btn-transparent col-6'>
                       Preview
