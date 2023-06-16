@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import './LayoutSizing.scss'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import { useDispatch } from 'react-redux'
 import { setSize } from '../../redux/reducers/selected'
 import { setSizes } from '../../redux/reducers/listing'
 
@@ -11,13 +10,19 @@ const LayoutSizing: React.FC = () => {
   const { size } = useSelector((state: RootState) => state.selected.selected)
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  const fetchSizes = (): void => {
     fetch('/src/data/sizes.json')
-      .then(res => res.json())
-      .then(data => {
+      .then(async (res) => await res.json())
+      .then(async (data) => {
         dispatch(setSizes(data))
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  useEffect(() => {
+    fetchSizes()
   }, [])
 
   return (
@@ -29,7 +34,7 @@ const LayoutSizing: React.FC = () => {
                 type="radio"
                 value={option.title}
                 checked={size.title === option.title}
-                onChange={() => dispatch(setSize(option))}
+                onChange={() => { dispatch(setSize(option)) }}
             />
             <p>{option.title}</p>
             <span>{option.size_inc}</span>

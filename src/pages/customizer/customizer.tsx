@@ -23,7 +23,6 @@ export const Customizer: React.FC = () => {
   const [audioFileName, setAudioFileName] = useState<string>('No Files Selected')
   const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
   const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
-  const [editLayoutBackground, setEditLayoutBackground] = useState<boolean>(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   // Redux state controls
@@ -78,19 +77,10 @@ export const Customizer: React.FC = () => {
     },
     [audioFile]
   )
-  const onImageClick = (event: Event): void => {
-    setEditLayoutBackground(true)
-    console.log(event)
-  }
   const resetAudioFile = (): void => {
     setShowConfirmation(true)
     console.log(showConfirmation)
   }
-
-  // @ts-expect-error: will be used soon for out box closing
-  // const handleCloseEditLayoutBackground = (): void => {
-  //   setEditLayoutBackground(false)
-  // }
 
   const handleConfirmDelete = (): void => {
     setAudioFile(null)
@@ -237,7 +227,7 @@ export const Customizer: React.FC = () => {
                     </ul>
                   </Accordion.Body>
                 </Accordion.Item>
-                {!editLayoutBackground && !controls.showTemplates &&
+                {!controls.editBackground && !controls.showTemplates &&
                   <div className='input-btns col-12'>
                     <button className='btn-transparent col-6'>
                       Preview

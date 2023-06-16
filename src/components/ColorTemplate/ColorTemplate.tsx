@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './ColorTemplate.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import { useDispatch } from 'react-redux'
 import { setColors } from '../../redux/reducers/listing'
 import { setColor } from '../../redux/reducers/selected'
 import { toggleEditBackground } from '../../redux/reducers/controls'
@@ -18,9 +17,11 @@ const ColorTemplate: React.FC<ToggleButtonProps> = ({ view = 'desktop' }) => {
 
   const fetchColors = (): void => {
     fetch('/src/data/colors.json')
-      .then(res => res.json())
-      .then(data => dispatch(setColors(data)))
-      .catch(err => console.log(err))
+      .then(async (res) => await res.json())
+      .then(async (data) => dispatch(setColors(data)))
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   const handleOptionChange = (option: any): void => {
@@ -32,11 +33,6 @@ const ColorTemplate: React.FC<ToggleButtonProps> = ({ view = 'desktop' }) => {
     fetchColors()
   }, [])
 
-  // const handleOptionChange = (value: Event): void => {
-  //   setSelectedOption(value.key)
-  //   handleColorSelection(value.view.concat(' ').concat(value.key))
-  //   onImageClick(value)
-  // }
   return (
     <>
         <div className='template-color'>
@@ -47,7 +43,7 @@ const ColorTemplate: React.FC<ToggleButtonProps> = ({ view = 'desktop' }) => {
                       type="radio"
                       value={option.key}
                       checked={color.id === option.id}
-                      onChange={() => handleOptionChange(option)} />
+                      onChange={() => { handleOptionChange(option) }} />
                     <img src={option.image} alt={option.key} />
                 </label>
                 : null

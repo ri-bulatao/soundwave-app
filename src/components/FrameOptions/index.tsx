@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import './index.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import { useDispatch } from 'react-redux'
 import { setFrames } from '../../redux/reducers/listing'
 import { setFrame } from '../../redux/reducers/selected'
 
@@ -11,13 +10,15 @@ const FrameOptions: React.FC = () => {
   const { selected } = useSelector((state: RootState) => state.selected)
   const dispatch = useDispatch()
 
-  const fetchFrames = () => {
+  const fetchFrames = (): void => {
     fetch('/src/data/frames.json')
-      .then(res => res.json())
-      .then(data => {
+      .then(async (res) => await res.json())
+      .then(async (data) => {
         dispatch(setFrames(data))
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const FrameOptions: React.FC = () => {
                 type="radio"
                 value={option.value}
                 checked={selected.frame.value === option.value}
-                onChange={() => dispatch(setFrame(option))}
+                onChange={() => { dispatch(setFrame(option)) }}
             />
             <img src={option.image} alt={option.title} />
             <span>{option.title}</span>
