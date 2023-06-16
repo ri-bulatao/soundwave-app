@@ -11,7 +11,9 @@ import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationMo
 import Templates from '../../components/Templates'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
+import type { CustomCanvas } from '../../common/types'
 import { toggleShowTemplates } from '../../redux/reducers/controls'
+import { updateOrientation } from '../../redux/reducers/canvas'
 import '~/pages/customizer/customizer.scss'
 
 export const Customizer: React.FC = () => {
@@ -32,6 +34,7 @@ export const Customizer: React.FC = () => {
 
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
+  const { orientation } = useSelector((state: RootState) => state.canvas)
   const dispatch = useDispatch()
 
   const handleAudioChange = (file: File): void => {
@@ -96,10 +99,14 @@ export const Customizer: React.FC = () => {
     setSelectedSizing(value)
     console.log(value)
   }
-  // @ts-expect-error: will be used soon for out box closing
-  // const handleCloseEditLayoutBackground = (): void => {
-  //   setEditLayoutBackground(false)
-  // }
+  const handleCloseEditLayoutBackground = (canvas: CustomCanvas): void => {
+    const classList = [...canvas.target.classList]
+    const filteredClassList = classList.filter((element: string) => {
+      const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input']
+      return canvasClass.includes(element)
+    })
+    setEditLayoutBackground(filteredClassList.length > 0)
+  }
   const handleColorSelection = (value: string): void => {
     if (selectedColor !== '') {
       setEditLayoutBackground(true)
@@ -113,9 +120,12 @@ export const Customizer: React.FC = () => {
     setShowConfirmation(false)
     console.log('reset')
   }
-
   const handleCancelDelete = (): void => {
     setShowConfirmation(false)
+  }
+  const setCanvasOrientation = (): void => {
+    const canvasOrientation = orientation === 'landscape' ? 'portrait' : 'landscape'
+    dispatch(updateOrientation(canvasOrientation))
   }
 
   useEffect(
@@ -134,7 +144,7 @@ export const Customizer: React.FC = () => {
           <button onClick={() => dispatch(toggleShowTemplates(true))} className="add-template-button">Template gallery</button>
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
         </div>
-        <div className='col-12 customizer-container'>
+        <div className='col-12 customizer-container' onClick={handleCloseEditLayoutBackground}>
           { controls.showTemplates
             ? <div className="col-5 input-container">
                 <Templates />
@@ -277,10 +287,14 @@ export const Customizer: React.FC = () => {
             }
           </div>
           }
-          <div className={`col-7 canvas-container ${customizerLayout}`}>
+          {/* Canvas Container */}
+          <div className={`col-7 canvas-container ${orientation}`}>
             <div className='canvas-component'>
               <div className='canvas-header'>
-                <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
+                <p className='text-capitalize'>{orientation} Image Background Template</p>
+                <button className='btn-circle' onClick={setCanvasOrientation}>
+                  <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
+                </button>
               </div>
               <div className={'canvas-content'} style={{ background: `url('${layoutBackgroundImage}'` }}>
                 <div className={`overlay ${selectedColor}`}></div>
