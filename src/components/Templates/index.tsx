@@ -34,10 +34,10 @@ const Templates: React.FC = () => {
       <div className="loader-container">
         <button className="load-more">Load more</button>
       </div>
-      <div className="action-container">
+      {/* <div className="action-container">
         <button className="preview">Preview</button>
         <button className="continue">Continue</button>
-      </div>
+      </div> */}
     </div>
   )
 }
