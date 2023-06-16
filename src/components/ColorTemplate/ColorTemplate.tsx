@@ -40,11 +40,12 @@ const ColorTemplate: React.FC<ToggleButtonProps> = ({ view = 'desktop' }) => {
               return view === option.view
                 ? <label className={`col-3 frame-color-selection frame-color ${option.view} ${color.id === option.id ? 'active' : ''}`} key={option.id}>
                     <input
+                      className='frame-color-selection-input'
                       type="radio"
                       value={option.key}
                       checked={color.id === option.id}
                       onChange={() => { handleOptionChange(option) }} />
-                    <img src={option.image} alt={option.key} />
+                    <img className='frame-color-selection-img' src={option.image} alt={option.key} />
                 </label>
                 : null
             })}

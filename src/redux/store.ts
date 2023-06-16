@@ -4,6 +4,7 @@ import controlsReducer from './reducers/controls'
 import customizerReducer from './reducers/customizer'
 import listingReducer from './reducers/listing'
 import selectedReducer from './reducers/selected'
+import canvasReducer from './reducers/canvas'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     controls: controlsReducer,
     customizer: customizerReducer,
     listing: listingReducer,
-    selected: selectedReducer
+    selected: selectedReducer,
+    canvas: canvasReducer
   }
 })
 

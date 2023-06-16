@@ -10,9 +10,11 @@ import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationMo
 import Templates from '../../components/Templates'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
+import type { CustomCanvas } from '../../common/types'
 import { toggleShowTemplates } from '../../redux/reducers/controls'
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import FrameOptions from '../../components/FrameOptions'
+import { updateOrientation } from '../../redux/reducers/canvas'
 import '~/pages/customizer/customizer.scss'
 
 export const Customizer: React.FC = () => {
@@ -29,6 +31,7 @@ export const Customizer: React.FC = () => {
   const { controls } = useSelector((state: RootState) => state.controls)
   const { customizer } = useSelector((state: RootState) => state.customizer)
   const { selected } = useSelector((state: RootState) => state.selected)
+  const { orientation } = useSelector((state: RootState) => state.canvas)
   const dispatch = useDispatch()
 
   const handleAudioChange = (file: File): void => {
@@ -82,15 +85,41 @@ export const Customizer: React.FC = () => {
     console.log(showConfirmation)
   }
 
+  const handleFrameSelection = (value: string): void => {
+    setSelectedFrame(value)
+    console.log(value)
+  }
+  const handleSizingSelection = (value: string): void => {
+    setSelectedSizing(value)
+    console.log(value)
+  }
+  const handleCloseEditLayoutBackground = (canvas: CustomCanvas): void => {
+    const classList = [...canvas.target.classList]
+    const filteredClassList = classList.filter((element: string) => {
+      const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input']
+      return canvasClass.includes(element)
+    })
+    setEditLayoutBackground(filteredClassList.length > 0)
+  }
+  const handleColorSelection = (value: string): void => {
+    if (selectedColor !== '') {
+      setEditLayoutBackground(true)
+    }
+    setSelectedColor(value)
+    console.log(value)
+  }
   const handleConfirmDelete = (): void => {
     setAudioFile(null)
     setAudioBuffer(null)
     setShowConfirmation(false)
     console.log('reset')
   }
-
   const handleCancelDelete = (): void => {
     setShowConfirmation(false)
+  }
+  const setCanvasOrientation = (): void => {
+    const canvasOrientation = orientation === 'landscape' ? 'portrait' : 'landscape'
+    dispatch(updateOrientation(canvasOrientation))
   }
 
   useEffect(
@@ -108,7 +137,7 @@ export const Customizer: React.FC = () => {
           <button onClick={() => dispatch(toggleShowTemplates(true))} className="add-template-button">Template gallery</button>
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
         </div>
-        <div className='col-12 customizer-container'>
+        <div className='col-12 customizer-container' onClick={handleCloseEditLayoutBackground}>
           { controls.showTemplates
             ? <div className="col-5 input-container">
                 <Templates />
@@ -251,10 +280,14 @@ export const Customizer: React.FC = () => {
             }
           </div>
           }
-          <div className={`col-7 canvas-container ${customizer.layout}`}>
+          {/* Canvas Container */}
+          <div className={`col-7 canvas-container ${orientation}`}>
             <div className='canvas-component'>
               <div className='canvas-header'>
-                <p>Landscape Image Background Template</p><img src='src/assets/icons/header-icon.png' alt='' />
+                <p className='text-capitalize'>{orientation} Image Background Template</p>
+                <button className='btn-circle' onClick={setCanvasOrientation}>
+                  <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
+                </button>
               </div>
               <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
                 <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
