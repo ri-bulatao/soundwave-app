@@ -275,10 +275,10 @@ export const Customizer: React.FC = () => {
                               Save and Close
                             </button>
                           </div>
-                          )
+                        )
                         : (
-                            null
-                          )
+                          null
+                        )
                       }
                     </div>
                     {showImageSizeAlert
@@ -286,7 +286,7 @@ export const Customizer: React.FC = () => {
                         <div className='alert-container'>
                           <p><img src='src/assets/icons/Check_ring_light.png' alt='' />{'Background size should not exceed 5MB.'}</p>
                         </div>
-                        )
+                      )
                       : null
                     }
                   </Accordion.Body>
