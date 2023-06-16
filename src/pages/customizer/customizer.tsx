@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
 import DragAndDropInput from '../../components/DragAndDropInput/DragAndDropInput'
@@ -10,7 +11,6 @@ import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationMo
 import Templates from '../../components/Templates'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import { MouseEventHandler } from 'react';
 import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/controls'
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import FrameOptions from '../../components/FrameOptions'
@@ -86,9 +86,9 @@ export const Customizer: React.FC = () => {
   }
 
   const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
-    const target = event.target as HTMLDivElement;
+    const target = event.target as HTMLDivElement
     console.log(target)
-    const classList = [...target.classList];
+    const classList = [...target.classList]
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
       return canvasClass.includes(element)

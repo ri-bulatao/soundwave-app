@@ -34,7 +34,7 @@ const DragAndDropImageInput: React.FC<DragAndDropInputProps> = ({ onImageChange 
     setState({ isDragging: false })
   }
 
-  const handleFileInputClick = () => {
+  const handleFileInputClick = (): void => {
     inputRef?.current?.click()
   }
 
