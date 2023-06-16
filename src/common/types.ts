@@ -21,3 +21,30 @@ export interface Template {
 export interface Controls {
   showTemplates: boolean
 }
+
+export interface Customizer {
+  layout: string
+  backgroundImage: string
+}
+
+export interface Listing {
+  frames: Frame[]
+  sizes: Size[]
+}
+
+export interface Size {
+  inch: string
+  cm: string
+  title: string
+}
+
+export interface Frame {
+  title: string
+  value: string
+  image: string
+}
+
+export interface Selected {
+  frame: Frame
+  size: Size
+}
