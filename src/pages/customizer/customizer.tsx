@@ -1,4 +1,5 @@
-import React, { MouseEventHandler, useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
@@ -84,8 +85,8 @@ export const Customizer: React.FC = () => {
   }
 
   const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
-    const target = event.currentTarget as HTMLDivElement;
-    const classList = Array.from(target.classList);
+    const target = event.currentTarget as HTMLDivElement
+    const classList = Array.from(target.classList)
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
       return canvasClass.includes(element)
