@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
 import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/controls'
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import { updateSpecifications } from '../../redux/reducers/canvas'
-import type { CustomCanvas } from '../../common/types'
 import '~/pages/customizer/customizer.scss'
 
 // Components
@@ -17,7 +16,6 @@ import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationMo
 import Templates from '../../components/Templates'
 import Canvas from '../../components/Canvas/Canvas'
 import FrameOptions from '../../components/FrameOptions'
-
 
 export const Customizer: React.FC = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null)
@@ -47,7 +45,7 @@ export const Customizer: React.FC = () => {
       }
     }
   }
-  
+
   const handleAudioChange = (file: File): void => {
     if (typeof file !== 'undefined' || file !== null) {
       const fileSizeInMB = file.size / (1024 * 1024)
@@ -62,7 +60,7 @@ export const Customizer: React.FC = () => {
       }
     }
   }
-  
+
   const convertToAudioBuffer = useCallback(
     (file: File): void => {
       if (typeof file === 'undefined') {
@@ -74,7 +72,7 @@ export const Customizer: React.FC = () => {
       fileReader.onload = async () => {
         const arrayBuffer = await file.arrayBuffer()
         const audioBufferData = await audioContext.decodeAudioData(arrayBuffer)
-        dispatch(updateSpecifications({audio: audioBufferData}))
+        dispatch(updateSpecifications({ audio: audioBufferData }))
       }
     },
     [audioFile]
@@ -85,8 +83,9 @@ export const Customizer: React.FC = () => {
     console.log(showConfirmation)
   }
 
-  const handleCloseEditLayoutBackground = (canvas: CustomCanvas): void => {
-    const classList = [...canvas.target.classList]
+  const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.currentTarget as HTMLDivElement;
+    const classList = Array.from(target.classList);
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
       return canvasClass.includes(element)
@@ -96,7 +95,7 @@ export const Customizer: React.FC = () => {
 
   const handleConfirmDelete = (): void => {
     setAudioFile(null)
-    dispatch(updateSpecifications({audio: null}))
+    dispatch(updateSpecifications({ audio: null }))
     setShowConfirmation(false)
     console.log('reset')
   }

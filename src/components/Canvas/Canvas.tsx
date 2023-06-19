@@ -7,17 +7,14 @@ import ColorTemplate from '../../components/ColorTemplate/ColorTemplate'
 import './Canvas.scss'
 
 const Canvas: React.FC = () => {
-
   const [audioFile] = useState<File | null>(null)
-  const [canvasTitle, setCanvasTitle] = useState<string>('Enter your title')
-  const [canvasSubtitle, setCanvasSubtitle] = useState<string>('Enter your subtitle here')
+  const [canvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation] = useState(false)
-
   const { orientation, specifications } = useSelector((state: RootState) => state.canvas)
   const { customizer } = useSelector((state: RootState) => state.customizer)
   const { selected } = useSelector((state: RootState) => state.selected)
   const dispatch = useDispatch()
-  
+
   const setCanvasOrientation = (): void => {
     const canvasOrientation = orientation === 'landscape' ? 'portrait' : 'landscape'
     dispatch(updateOrientation(canvasOrientation))

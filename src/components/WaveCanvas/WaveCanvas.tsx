@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
-interface WaveCanvas {
+interface WaveCanvasInterface {
   id: string
 }
 
 /* eslint max-len: ['error', { 'code': 280 }] */
-const WaveCanvas: React.FC<WaveCanvas> = ({id}) => {
+const WaveCanvas: React.FC<WaveCanvasInterface> = ({ id }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const { specifications } = useSelector((state: RootState) => state.canvas)
@@ -34,14 +34,14 @@ const WaveCanvas: React.FC<WaveCanvas> = ({id}) => {
         specifications.height
       )
       // Set the fill color to black
-      context.fillStyle = id == 'main-canvas' ? '#FFFFFF' : '#000'
+      context.fillStyle = id === 'main-canvas' ? '#FFFFFF' : '#000'
       context.beginPath()
       for (let val = 0; val < specifications.width; val += 0.75) {
         const sum = channelData.slice(
           val * step,
           (val + 1) * step
         ).reduce(
-          (aa, bb) => aa + Math.abs(bb),
+          (aa: number, bb: number) => aa + Math.abs(bb),
           0
         )
         const avg = sum / (step * 7)

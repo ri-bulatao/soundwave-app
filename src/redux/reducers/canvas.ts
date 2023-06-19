@@ -31,13 +31,13 @@ export const canvasSlice = createSlice({
       state.orientation = action.payload
     },
     updateSpecifications: (state, action: PayloadAction<any>) => {
-      const data = action.payload;
+      const data = action.payload
 
       state.specifications.audioBuffer = data.audio ?? null
-      state.specifications.waveHeight = data.waveHeight  ?? 20
-      state.specifications.width = data.width  ?? 350
-      state.specifications.height = data.height  ?? 170
-    },
+      state.specifications.waveHeight = data.waveHeight ?? 20
+      state.specifications.width = data.width ?? 350
+      state.specifications.height = data.height ?? 170
+    }
   }
 })
 
