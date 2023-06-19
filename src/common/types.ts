@@ -21,6 +21,8 @@ export interface Template {
 
 export interface Controls {
   showTemplates: boolean
+  showTitleEditor: boolean
+  showSubtitleEditor: boolean
   editBackground: boolean
   showFilterDropdown: boolean
 }
