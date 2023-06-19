@@ -1,6 +1,7 @@
 export interface Template {
   id: number
   image: string
+  selected: boolean
   title: {
     text: string
     fontSize: string
@@ -21,6 +22,7 @@ export interface Template {
 export interface Controls {
   showTemplates: boolean
   editBackground: boolean
+  showFilterDropdown: boolean
 }
 
 export interface Customizer {
@@ -47,10 +49,24 @@ export interface Color {
   view: string
 }
 
+export interface FilterOption {
+  id: number
+  checked: boolean
+  text: string
+}
+
+export interface Filter {
+  id: number
+  title: string
+  options: FilterOption[]
+}
+
 export interface Listing {
   frames: Frame[]
   sizes: Size[]
   colors: Color[]
+  filters: Filter[]
+  selectedFilters: FilterOption[]
 }
 
 export interface Selected {

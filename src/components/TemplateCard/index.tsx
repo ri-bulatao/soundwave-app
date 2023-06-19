@@ -1,14 +1,18 @@
 import './index.css'
 import React from 'react'
 import type { Template } from '../../common/types'
+import { useDispatch } from 'react-redux'
+import { setSelectedTemplate } from '../../redux/reducers/templates'
 
 interface TemplateCardProps {
   template: Template
 }
 
 const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
+  const dispatch = useDispatch()
+
   return (
-    <div className="card-wrapper">
+    <div onClick={() => dispatch(setSelectedTemplate(template))} className={`card-wrapper ${template.selected ? 'selected' : ''}`}>
       <div className="image-container">
         <img src={ template.image } alt="" className="image" />
       </div>
