@@ -40,7 +40,8 @@ export const filterItems: Filter[] = [
         id: 6,
         checked: false,
         text: 'Celebrations'
-      },{
+      },
+      {
         id: 7,
         checked: false,
         text: 'Motivational'

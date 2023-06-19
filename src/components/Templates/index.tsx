@@ -14,12 +14,12 @@ import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 const Templates: React.FC = () => {
   const { templates } = useSelector((state: RootState) => state.templates)
   const { filters, selectedFilters } = useSelector((state: RootState) => state.listing.listing)
-  const { controls } = useSelector((state:  RootState) => state.controls)
+  const { controls } = useSelector((state: RootState) => state.controls)
   const [showConfirmation, toggeShowConfirmation] = useState(false)
   const dispatch = useDispatch()
 
   const toggleFilter = (): void => {
-    let filter = !controls.showFilterDropdown
+    const filter = !controls.showFilterDropdown
     dispatch(toggleShowFilterDropdown(filter))
   }
 
@@ -100,15 +100,15 @@ const Templates: React.FC = () => {
       </div>
       <div className="action-container">
         <button className="preview">Preview</button>
-        <button onClick={() => handleModalClick(true)} className="continue">Continue</button>
+        <button onClick={() => { handleModalClick(true) }} className="continue">Continue</button>
       </div>
       <div className="modals">
         <ConfirmationModal
         isOpen={showConfirmation}
         message='Do you want to keep your progress in new template?'
         subMessage='Your changes will be applied to the new template.'
-        onConfirm={() => handleModalClick(false)}
-        onCancel={() => handleModalClick(false)}
+        onConfirm={() => { handleModalClick(false) }}
+        onCancel={() => { handleModalClick(false) }}
         confirmText='Yes, Keep'
         cancelText='Discard'
          />

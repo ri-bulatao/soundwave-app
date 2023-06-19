@@ -18,16 +18,17 @@ export const templatesSlice = createSlice({
       state.templates = action.payload
     },
     setSelectedTemplate: (state: TemplatesState, action: PayloadAction<Template>) => {
-      let newTemplate: Template[] = []
+      const newTemplate: Template[] = []
 
       state.templates.map(template => {
-        if(template.id === action.payload.id) {
+        if (template.id === action.payload.id) {
           template.selected = true
         } else {
-          template.selected =  false
+          template.selected = false
         }
 
         newTemplate.push(template)
+        return newTemplate
       })
 
       state.templates = newTemplate

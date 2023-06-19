@@ -11,10 +11,11 @@ import Templates from '../../components/Templates'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
 import type { CustomCanvas } from '../../common/types'
-import { toggleShowTemplates } from '../../redux/reducers/controls'
+import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/controls'
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import FrameOptions from '../../components/FrameOptions'
 import { updateOrientation } from '../../redux/reducers/canvas'
+
 import '~/pages/customizer/customizer.scss'
 
 export const Customizer: React.FC = () => {
@@ -91,6 +92,8 @@ export const Customizer: React.FC = () => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input']
       return canvasClass.includes(element)
     })
+
+    dispatch(toggleEditBackground(filteredClassList.length > 0))
     // setEditLayoutBackground(filteredClassList.length > 0)
   }
 
