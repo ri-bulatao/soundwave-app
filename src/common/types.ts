@@ -93,9 +93,10 @@ export interface Canvas {
     subtitle: string
   }
   specifications: {
-    audioBuffer: AudioBuffer | null
+    audioBuffer: any
     waveHeight: number
     width: number
     height: number
   }
 }
+
