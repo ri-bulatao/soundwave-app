@@ -1,6 +1,6 @@
 import '../../styles/main.scss'
 import './templates.css'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { load } from '../../redux/reducers/templates'
@@ -9,11 +9,13 @@ import { setFilters, toggleOptionChecked, clearFilters, removeSelectedFilter } f
 import { templatesData } from '../../config/initialTemplates'
 import TemplateCard from '../TemplateCard'
 import { filterItems } from '../../data/filters'
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 
 const Templates: React.FC = () => {
   const { templates } = useSelector((state: RootState) => state.templates)
   const { filters, selectedFilters } = useSelector((state: RootState) => state.listing.listing)
   const { controls } = useSelector((state:  RootState) => state.controls)
+  const [showConfirmation, toggeShowConfirmation] = useState(false)
   const dispatch = useDispatch()
 
   const toggleFilter = (): void => {
@@ -23,6 +25,10 @@ const Templates: React.FC = () => {
 
   const toggleOption = (filter: any, option: any): void => {
     dispatch(toggleOptionChecked({ filterId: filter.id, optionId: option.id }))
+  }
+
+  const handleModalClick = (show: boolean = false): void => {
+    toggeShowConfirmation(show)
   }
 
   useEffect(() => {
@@ -68,7 +74,7 @@ const Templates: React.FC = () => {
                   }
                 </div>
                 <div className="actions-wrapper">
-                  <button className="apply-filter">Apply</button>
+                  <button onClick={toggleFilter} className="apply-filter">Apply</button>
                 </div>
               </div>
             </div>
@@ -94,7 +100,18 @@ const Templates: React.FC = () => {
       </div>
       <div className="action-container">
         <button className="preview">Preview</button>
-        <button className="continue">Continue</button>
+        <button onClick={() => handleModalClick(true)} className="continue">Continue</button>
+      </div>
+      <div className="modals">
+        <ConfirmationModal
+        isOpen={showConfirmation}
+        message='Do you want to keep your progress in new template?'
+        subMessage='Your changes will be applied to the new template.'
+        onConfirm={() => handleModalClick(false)}
+        onCancel={() => handleModalClick(false)}
+        confirmText='Yes, Keep'
+        cancelText='Discard'
+         />
       </div>
     </div>
   )
