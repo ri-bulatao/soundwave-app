@@ -14,7 +14,7 @@ import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import FrameOptions from '../../components/FrameOptions'
 import { updateOrientation } from '../../redux/reducers/canvas'
-import { CustomCanvas } from '../../common/types'
+import type { CustomCanvas } from '../../common/types'
 import '~/pages/customizer/customizer.scss'
 
 export const Customizer: React.FC = () => {
