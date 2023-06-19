@@ -85,29 +85,15 @@ export const Customizer: React.FC = () => {
     console.log(showConfirmation)
   }
 
-  const handleFrameSelection = (value: string): void => {
-    setSelectedFrame(value)
-    console.log(value)
-  }
-  const handleSizingSelection = (value: string): void => {
-    setSelectedSizing(value)
-    console.log(value)
-  }
   const handleCloseEditLayoutBackground = (canvas: CustomCanvas): void => {
     const classList = [...canvas.target.classList]
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input']
       return canvasClass.includes(element)
     })
-    setEditLayoutBackground(filteredClassList.length > 0)
+    // setEditLayoutBackground(filteredClassList.length > 0)
   }
-  const handleColorSelection = (value: string): void => {
-    if (selectedColor !== '') {
-      setEditLayoutBackground(true)
-    }
-    setSelectedColor(value)
-    console.log(value)
-  }
+
   const handleConfirmDelete = (): void => {
     setAudioFile(null)
     setAudioBuffer(null)
