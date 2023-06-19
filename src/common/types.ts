@@ -1,6 +1,7 @@
 export interface Template {
   id: number
   image: string
+  selected: boolean
   title: {
     text: string
     fontSize: string

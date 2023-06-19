@@ -261,6 +261,8 @@ export const Customizer: React.FC = () => {
                 subMessage="You will not be able to undo this action."
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
+                confirmText='Continue'
+                cancelText='Cancel'
               />
               : null
             }
