@@ -9,7 +9,6 @@ import './Canvas.scss'
 
 const Canvas: React.FC = () => {
   const [audioFile] = useState<File | null>(null)
-  const [canvasSubtitle] = useState<string>('Enter your subtitle here')
   const [showConfirmation] = useState(false)
   const { orientation, specifications, content } = useSelector((state: RootState) => state.canvas)
   const { title, subtitle } = content
