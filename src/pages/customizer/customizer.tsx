@@ -30,7 +30,8 @@ export const Customizer: React.FC = () => {
   // Redux state controls
   const { controls } = useSelector((state: RootState) => state.controls)
   const { selected } = useSelector((state: RootState) => state.selected)
-  const { orientation, specifications } = useSelector((state: RootState) => state.canvas)
+  const { orientation, content } = useSelector((state: RootState) => state.canvas)
+  const { title } = content
   const dispatch = useDispatch()
 
   const handleLayoutImageUpdate = (file: File): void => {

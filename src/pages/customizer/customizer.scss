@@ -324,13 +324,10 @@ button.accordion-button {
 }
 
 .canvas-text.title {
-  font-family: 'Cormorant';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 50px;
-  line-height: 61px;
-  text-transform: uppercase;
-  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.5px solid #EFEFEF;
+  border-radius: 8px;
+  padding: 30px 16px;
 }
 
 .canvas-text.title h1 {
@@ -339,7 +336,6 @@ button.accordion-button {
   font-weight: 500;
   font-size: 50px;
   line-height: 61px;
-
 }
 
 .canvas-text.subtitle {

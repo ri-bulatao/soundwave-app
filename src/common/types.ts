@@ -91,7 +91,12 @@ export interface Canvas {
   size: string
   totalPrice: number
   content: {
-    title: string
+    title: {
+      text: string
+      family: string
+      weight: number
+      size: number
+    }
     subtitle: string
   }
   specifications: {
@@ -100,4 +105,11 @@ export interface Canvas {
     width: number
     height: number
   }
+}
+
+export interface CanvasTitle {
+  text: string
+  family: string
+  weight: number
+  size: number
 }

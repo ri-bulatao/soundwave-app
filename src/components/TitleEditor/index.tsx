@@ -1,7 +1,21 @@
 import React from 'react'
 import './index.scss'
+import type { RootState } from '../../redux/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateTitle } from '../../redux/reducers/canvas'
 
 const TitleEditor: React.FC = () => {
+  const { title } = useSelector((state: RootState) => state.canvas.content)
+  const dispatch = useDispatch()
+
+  const update = (param: any): void => {
+    const newVal = {
+      ...title,
+      [param.key]: param.value
+    }
+
+    dispatch(updateTitle(newVal))
+  }
 
   return (
     <div className="sidecontainer">
@@ -13,12 +27,12 @@ const TitleEditor: React.FC = () => {
         {/* Title text */}
         <div className="group-input">
           <label htmlFor="title" className="control-label">Title</label>
-          <input type="text" className="form-input" placeholder='ENTER YOUR TITLE' />
+          <input type="text" className="form-input" placeholder='ENTER YOUR TITLE' onChange={(e) => { update({ key: 'text', value: e.target.value }) }} value={title.text} />
         </div>
         {/* Font family */}
         <div className="group-input">
           <label htmlFor="fontFamily" className="control-label">Font family</label>
-          <select name="fontFamily" id="fontFamily" className="select-input">
+          <select value={title.family} onChange={(e) => { update({ key: 'family', value: e.target.value }) }} name="fontFamily" id="fontFamily" className="select-input">
             <option value="Arial">Arial</option>
             <option value="Cormorant">Cormorant</option>
             <option value="Roman">Roman</option>
@@ -28,7 +42,7 @@ const TitleEditor: React.FC = () => {
           {/* Font weight */}
           <div className="group-input">
             <label htmlFor="fontWeight" className="control-label">Font Weight</label>
-            <select name="fontWeight" id="fontWeight" className="select-input">
+            <select value={title.weight} onChange={(e) => { update({ key: 'weight', value: e.target.value }) }} name="fontWeight" id="fontWeight" className="select-input">
               <option value="300">Light</option>
               <option value="500">Normal</option>
               <option value="600">Semibold</option>
@@ -38,8 +52,8 @@ const TitleEditor: React.FC = () => {
 
           {/* Font size */}
           <div className="group-input">
-            <label htmlFor="fontWeight" className="control-label">Font Size</label>
-            <select name="fontWeight" id="fontWeight" className="select-input">
+            <label htmlFor="fontSize" className="control-label">Font Size</label>
+            <select value={title.size} onChange={(e) => { update({ key: 'size', value: e.target.value }) }} name="fontSize" id="fontSize" className="select-input">
               <option value="10">10</option>
               <option value="11">11</option>
               <option value="12">12</option>
@@ -47,6 +61,7 @@ const TitleEditor: React.FC = () => {
               <option value="26">26</option>
               <option value="28">28</option>
               <option value="32">32</option>
+              <option value="56">56</option>
             </select>
           </div>
         </div>
