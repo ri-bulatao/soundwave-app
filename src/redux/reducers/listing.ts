@@ -33,69 +33,84 @@ export const listingSlice = createSlice({
       state.listing.filters = action.payload
     },
     toggleOptionChecked: (state: ListingState, action: PayloadAction<any>) => {
-      let data = action.payload
-      let newVal: Filter[] = []
+      const data = action.payload
+      const newVal: Filter[] = []
 
       state.listing.filters.map(filter => {
-        if(filter.id === data.filterId) {
+        if (filter.id === data.filterId) {
           filter.options.map(option => {
-            if(option.id === data.optionId) {
+            if (option.id === data.optionId) {
               option.checked = !option.checked
             }
+
+            return option
           })
         }
         newVal.push(filter)
+        return filter
       })
 
       state.listing.filters = newVal
 
       // Set selected filters
-      let newOptions: FilterOption[] = []
+      const newOptions: FilterOption[] = []
 
       state.listing.filters.map(filter => {
         filter.options.map(option => {
-          if(option.checked) {
+          if (option.checked) {
             newOptions.push(option)
           }
+
+          return option
         })
+
+        return filter
       })
 
       state.listing.selectedFilters = newOptions
     },
     removeSelectedFilter: (state: ListingState, action: PayloadAction<number>) => {
-      let newArray: FilterOption[] = []
+      const newArray: FilterOption[] = []
 
       state.listing.selectedFilters.map(filter => {
-        if(filter.id !== action.payload) {
+        if (filter.id !== action.payload) {
           newArray.push(filter)
         }
+        return filter
       })
 
       state.listing.selectedFilters = newArray
 
-      let newFilters: Filter[] = []
+      const newFilters: Filter[] = []
 
       state.listing.filters.map(filter => {
         filter.options.map(option => {
-          if(option.id === action.payload) {
+          if (option.id === action.payload) {
             option.checked = false
           }
+
+          return option
         })
 
         newFilters.push(filter)
+        return filter
       })
 
       state.listing.filters = newFilters
     },
     clearFilters: (state: ListingState) => {
-      let newVal: Filter[] = []
+      const newVal: Filter[] = []
 
       state.listing.filters.map(filter => {
         filter.options.map(option => {
           option.checked = false
+
+          return option
         })
 
         newVal.push(filter)
+
+        return filter
       })
 
       state.listing.filters = newVal
