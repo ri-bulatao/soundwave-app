@@ -11,7 +11,6 @@ import TemplateCard from '../TemplateCard'
 import { filterItems } from '../../data/filters'
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 
-
 const Templates: React.FC = () => {
   const { templates } = useSelector((state: RootState) => state.templates)
   const { filters, selectedFilters } = useSelector((state: RootState) => state.listing.listing)

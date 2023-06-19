@@ -3,7 +3,7 @@ import React from 'react'
 import type { Template } from '../../common/types'
 import { useDispatch } from 'react-redux'
 import { setSelectedTemplate } from '../../redux/reducers/templates'
-import  { setTemplate } from '../../redux/reducers/selected'
+import { setTemplate } from '../../redux/reducers/selected'
 
 interface TemplateCardProps {
   template: Template
@@ -18,7 +18,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
   }
 
   return (
-    <div onClick={() => selectTemplate(template)} className={`card-wrapper ${template.selected ? 'selected' : ''}`}>
+    <div onClick={() => { selectTemplate(template) }} className={`card-wrapper ${template.selected ? 'selected' : ''}`}>
       <div className="image-container">
         <img src={ template.image } alt="" className="image" />
       </div>
