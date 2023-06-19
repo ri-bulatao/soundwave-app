@@ -15,7 +15,12 @@ const initialState: Canvas = {
       weight: 500,
       size: 56
     },
-    subtitle: ''
+    subtitle: {
+      text: 'Enter your subtitle here',
+      family: 'Arial',
+      size: 18,
+      weight: 400
+    }
   },
   specifications: {
     audioBuffer: null,
@@ -29,8 +34,11 @@ export const canvasSlice = createSlice({
   name: 'canvas',
   initialState,
   reducers: {
-    updateTitle: (state, action: PayloadAction<any>) => {
+    updateTitle: (state: Canvas, action: PayloadAction<CanvasTitle>) => {
       state.content.title = action.payload
+    },
+    updateSubtitle: (state: Canvas, action: PayloadAction<CanvasTitle>) => {
+      state.content.subtitle = action.payload
     },
     updateOrientation: (state, action: PayloadAction<string>) => {
       state.orientation = action.payload
@@ -47,6 +55,6 @@ export const canvasSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { updateTitle, updateOrientation, updateSpecifications } = canvasSlice.actions
+export const { updateTitle, updateSubtitle, updateOrientation } = canvasSlice.actions
 
 export default canvasSlice.reducer

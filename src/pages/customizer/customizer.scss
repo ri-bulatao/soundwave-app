@@ -294,7 +294,7 @@ button.accordion-button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  // gap: 30px;
   position: relative;
   overflow: hidden;
   border-radius: 8px !important;
@@ -317,7 +317,7 @@ button.accordion-button {
 
 .canvas-text {
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='white' stroke-width='3' stroke-dasharray='10%2c 12' stroke-dashoffset='20' stroke-linecap='square'/%3e%3c/svg%3e");
+  // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='white' stroke-width='3' stroke-dasharray='10%2c 12' stroke-dashoffset='20' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 8px;
   color: #FFFFFF;
   padding: 10px 40px;
@@ -328,14 +328,8 @@ button.accordion-button {
   border: 0.5px solid #EFEFEF;
   border-radius: 8px;
   padding: 30px 16px;
-}
-
-.canvas-text.title h1 {
-  font-family: 'Cormorant';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 50px;
   line-height: 61px;
+  max-width: 95%;
 }
 
 .canvas-text.subtitle {
@@ -345,6 +339,15 @@ button.accordion-button {
   align-items: flex-start;
   padding: 8px 16px;
   gap: 10px;
+  border: 2px dashed #FFFFFF;
+  border-radius: 8px;
+  margin-top: 8px;
+  line-height: 24px;
+  max-width: 95%;
+}
+
+.canvas-soundwave {
+  margin-top: 42px;
 }
 
 .canvas-content .overlay {

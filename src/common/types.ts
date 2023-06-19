@@ -91,13 +91,8 @@ export interface Canvas {
   size: string
   totalPrice: number
   content: {
-    title: {
-      text: string
-      family: string
-      weight: number
-      size: number
-    }
-    subtitle: string
+    title: CanvasTitle
+    subtitle: CanvasTitle
   }
   specifications: {
     audioBuffer: any
