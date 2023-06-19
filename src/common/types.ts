@@ -73,6 +73,7 @@ export interface Selected {
   frame: Frame
   size: Size
   color: Color
+  template: Template
 }
 
 export interface CustomCanvas {
