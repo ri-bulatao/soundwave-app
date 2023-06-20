@@ -17,6 +17,7 @@ export interface Template {
     fontColor: string
   }
   colors: any[]
+  fonts: any[]
 }
 
 export interface Controls {

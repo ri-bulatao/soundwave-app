@@ -6,6 +6,7 @@ import { updateTitle } from '../../redux/reducers/canvas'
 
 const TitleEditor: React.FC = () => {
   const { title } = useSelector((state: RootState) => state.canvas.content)
+  const { template } = useSelector((state: RootState) => state.selected.selected)
   const dispatch = useDispatch()
 
   const update = (param: any): void => {
@@ -33,9 +34,11 @@ const TitleEditor: React.FC = () => {
         <div className="group-input">
           <label htmlFor="fontFamily" className="control-label">Font family</label>
           <select value={title.family} onChange={(e) => { update({ key: 'family', value: e.target.value }) }} name="fontFamily" id="fontFamily" className="select-input">
-            <option value="Arial">Arial</option>
-            <option value="Cormorant">Cormorant</option>
-            <option value="Roman">Roman</option>
+            {
+              template.fonts.map(font => (
+                <option value={font.name}>{font.name}</option>
+              ))
+            }
           </select>
         </div>
         <div className="group-half">
