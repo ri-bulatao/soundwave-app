@@ -9,7 +9,7 @@ interface AccordionProps {
   eventKey: string
 }
 
-const MaterialAccordion: React.FC<AccordionProps> = ({eventKey}) => {
+const MaterialAccordion: React.FC<AccordionProps> = ({ eventKey }) => {
   const { selected } = useSelector((state: RootState) => state.selected)
   const { specifications } = useSelector((state: RootState) => state.canvas)
 

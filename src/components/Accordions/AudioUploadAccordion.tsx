@@ -12,7 +12,7 @@ interface AccordionProps {
   eventKey: string
 }
 
-const AudioUploadAccordion: React.FC<AccordionProps> = ({eventKey}) => {
+const AudioUploadAccordion: React.FC<AccordionProps> = ({ eventKey }) => {
   const { specifications, audioFileName, audioFile } = useSelector((state: RootState) => state.canvas)
   const { showFileSizeAlert } = useSelector((state: RootState) => state.controls.controls)
   const dispatch = useDispatch()
@@ -54,7 +54,7 @@ const AudioUploadAccordion: React.FC<AccordionProps> = ({eventKey}) => {
   }
 
   return (
-    <Accordion.Item eventKey={eventKey}>
+    <Accordion.Item eventKey={ eventKey }>
       <Accordion.Header className={`upload-header ${specifications.audioBuffer !== null ? 'file-uploaded' : ''}`}>
         <div className='upload-header'>
           <div>

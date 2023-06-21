@@ -1,11 +1,10 @@
 import React from 'react'
 import { Accordion } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { type RootState } from '../../redux/store'
 import DragAndDropImageInput from '../DragAndDropImageInput/DragAndDropImageInput'
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import { toggleShowImageSizeAlert } from '../../redux/reducers/controls'
-import { useDispatch } from 'react-redux'
 
 interface AccordionProps {
   eventKey: string
