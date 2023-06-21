@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { MouseEventHandler, useEffect } from 'react'
 import './index.scss'
 import type { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTitle } from '../../redux/reducers/canvas'
+import { toggleTitleEditor, toggleSubtitleEditor } from '../../redux/reducers/controls'
 
 const TitleEditor: React.FC = () => {
   const { title } = useSelector((state: RootState) => state.canvas.content)
   const { template } = useSelector((state: RootState) => state.selected.selected)
+  const { controls } = useSelector((state: RootState) => state.controls)
   const dispatch = useDispatch()
 
   const update = (param: any): void => {
@@ -18,8 +20,25 @@ const TitleEditor: React.FC = () => {
     dispatch(updateTitle(newVal))
   }
 
+  const handleCloseTitleCustomization: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.target as HTMLDivElement
+    const classList = Array.from(target.classList)
+    const filteredClassList = classList.filter((element: string) => {
+      const canvasClass = ['group-input', 'form-input', 'select-input', 'control-label', 'form-container', 'group-half']
+      return canvasClass.includes(element)
+    })
+
+    if(controls.showTitleEditor) {
+      dispatch(toggleTitleEditor(filteredClassList.length > 0))
+    }
+
+    if(controls.showSubtitleEditor) {
+      dispatch(toggleSubtitleEditor(filteredClassList.length > 0))
+    }
+  }
+
   return (
-    <div className="sidecontainer">
+    <div onClick={handleCloseTitleCustomization} className="sidecontainer">
       <div className="title-container">
         <div className="title">Title Customization</div>
         <div className="subtitle">Style title of your soundwave art</div>
@@ -36,7 +55,7 @@ const TitleEditor: React.FC = () => {
           <select value={title.family} onChange={(e) => { update({ key: 'family', value: e.target.value }) }} name="fontFamily" id="fontFamily" className="select-input">
             {
               template.fonts.map(font => (
-                <option value={font.name}>{font.name}</option>
+                <option key={font.id} value={font.name}>{font.name}</option>
               ))
             }
           </select>

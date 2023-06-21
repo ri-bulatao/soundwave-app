@@ -87,7 +87,7 @@ export const Customizer: React.FC = () => {
   }
 
   const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
-    const target = event.currentTarget as HTMLDivElement
+    const target = event.target as HTMLDivElement
     const classList = Array.from(target.classList)
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
