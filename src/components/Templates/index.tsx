@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import type { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { load } from '../../redux/reducers/templates'
-import { toggleShowFilterDropdown } from '../../redux/reducers/controls'
+import { toggleShowFilterDropdown, toggleShowTemplates } from '../../redux/reducers/controls'
 import { setFilters, toggleOptionChecked, clearFilters, removeSelectedFilter } from '../../redux/reducers/listing'
 import TemplateCard from '../TemplateCard'
 import { filterItems } from '../../data/filters'
@@ -33,6 +33,7 @@ const Templates: React.FC = () => {
 
   const handleConfirm = (): void => {
     dispatch(setTemplate(template))
+    dispatch(toggleShowTemplates(false))
     toggeShowConfirmation(false)
   }
 
