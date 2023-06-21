@@ -51,7 +51,6 @@ export const Customizer: React.FC = () => {
   }
 
   const handleCurrentStep = (): void => {
-
     if (controls.currentStep === 'audio') {
       const payload = {
         file: audioFile,
@@ -64,7 +63,6 @@ export const Customizer: React.FC = () => {
       dispatch(setMaterialFrame(selected.frame))
       dispatch(setMaterialSize(selected.size))
     }
-
   }
 
   return (

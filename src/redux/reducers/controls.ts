@@ -21,7 +21,7 @@ const initialState: ControlsState = {
     showRemoveAudioConfirmation: false,
     currentStep: 'audio',
     audioComplete: false,
-    materialComplete: false,
+    materialComplete: false
   }
 }
 

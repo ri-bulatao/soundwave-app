@@ -5,7 +5,7 @@ import customizerReducer from './customizer'
 import listingReducer from './listing'
 import selectedReducer from './selected'
 import canvasReducer from './canvas'
-import checkoutReducer from  './checkout'
+import checkoutReducer from './checkout'
 
 const rootReducer = combineReducers({
   templates: templatesReducer,
