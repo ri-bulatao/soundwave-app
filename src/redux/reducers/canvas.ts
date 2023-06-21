@@ -27,7 +27,9 @@ const initialState: Canvas = {
     waveHeight: 20,
     width: 350,
     height: 170
-  }
+  },
+  audioFile: null,
+  audioFileName: 'No Files Selected'
 }
 
 export const canvasSlice = createSlice({
@@ -50,11 +52,17 @@ export const canvasSlice = createSlice({
       state.specifications.waveHeight = data.waveHeight ?? 20
       state.specifications.width = data.width ?? 350
       state.specifications.height = data.height ?? 170
+    },
+    setAudioFile: (state, action: PayloadAction<File | null>) => {
+      state.audioFile = action.payload
+    },
+    setAudioFileName: (state, action: PayloadAction<string>) => {
+      state.audioFileName = action.payload
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { updateTitle, updateSubtitle, updateOrientation, updateSpecifications } = canvasSlice.actions
+export const { updateTitle, updateSubtitle, updateOrientation, updateSpecifications, setAudioFile, setAudioFileName } = canvasSlice.actions
 
 export default canvasSlice.reducer

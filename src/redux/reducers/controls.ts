@@ -15,7 +15,10 @@ const initialState: ControlsState = {
 
     // General controls
     editBackground: false,
-    showFilterDropdown: false
+    showFilterDropdown: false,
+    showImageSizeAlert: false,
+    showFileSizeAlert: false,
+    showRemoveAudioConfirmation: false
   }
 }
 
@@ -57,10 +60,28 @@ export const controlsSlice = createSlice({
     },
     toggleShowFilterDropdown: (state: ControlsState, action: PayloadAction<boolean>) => {
       state.controls.showFilterDropdown = action.payload
+    },
+    toggleShowImageSizeAlert: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.showImageSizeAlert = action.payload
+    },
+    toggleShowFileSizeAlert: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.showFileSizeAlert = action.payload
+    },
+    toggleShowAudioResetConfirmation: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.showRemoveAudioConfirmation = action.payload
     }
   }
 })
 
-export const { toggleShowTemplates, toggleTitleEditor, toggleSubtitleEditor, toggleEditBackground, toggleShowFilterDropdown } = controlsSlice.actions
+export const {
+  toggleShowTemplates,
+  toggleTitleEditor,
+  toggleSubtitleEditor,
+  toggleEditBackground,
+  toggleShowFilterDropdown,
+  toggleShowImageSizeAlert,
+  toggleShowFileSizeAlert,
+  toggleShowAudioResetConfirmation
+} = controlsSlice.actions
 
 export default controlsSlice.reducer
