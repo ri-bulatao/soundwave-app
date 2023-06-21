@@ -24,7 +24,8 @@ const initialState: ControlsState = {
     materialComplete: false,
     currentEditting: '',
     showTitleSaved: false,
-    isContinueDisabled: true
+    isContinueDisabled: true,
+    showPreviewModal: false
   }
 }
 
@@ -93,6 +94,9 @@ export const controlsSlice = createSlice({
     },
     setIsContinueDisabled: (state: ControlsState, action: PayloadAction<boolean>) => {
       state.controls.isContinueDisabled = action.payload
+    },
+    setShowPreviewModal: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.showPreviewModal = action.payload
     }
   }
 })
@@ -111,7 +115,8 @@ export const {
   setMaterialComplete,
   setCurrentEditting,
   setShowtitleSaved,
-  setIsContinueDisabled
+  setIsContinueDisabled,
+  setShowPreviewModal
 } = controlsSlice.actions
 
 export default controlsSlice.reducer
