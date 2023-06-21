@@ -10,6 +10,7 @@ interface AccordionProps {
 
 const OrderReviewAccordion: React.FC<AccordionProps> = ({ eventKey }) => {
   const { selected } = useSelector((state: RootState) => state.selected)
+  const { orientation } = useSelector((state: RootState) => state.canvas)
 
   return (
     <Accordion.Item eventKey={eventKey}>
@@ -29,7 +30,7 @@ const OrderReviewAccordion: React.FC<AccordionProps> = ({ eventKey }) => {
       <Accordion.Body>
         <ul className="order-preview-container">
           <li className="order-item">
-            ORIENTATION<strong>{'Landscapre'}</strong>
+            ORIENTATION<strong>{orientation}</strong>
           </li>
           <li className="order-item">
             FRAME TYPE<strong>{selected.frame.title}</strong>
