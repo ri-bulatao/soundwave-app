@@ -26,6 +26,9 @@ export interface Controls {
   showSubtitleEditor: boolean
   editBackground: boolean
   showFilterDropdown: boolean
+  showImageSizeAlert: boolean
+  showFileSizeAlert: boolean
+  showRemoveAudioConfirmation: boolean
 }
 
 export interface Customizer {
@@ -101,6 +104,8 @@ export interface Canvas {
     width: number
     height: number
   }
+  audioFile: File | null
+  audioFileName: string
 }
 
 export interface CanvasTitle {
