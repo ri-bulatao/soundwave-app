@@ -11,40 +11,40 @@ const initialState: TemplatesState = {
   templates: [],
   template: {
     id: 1,
-    image: "/src/assets/img/frames/frame-1.png",
+    image: '/src/assets/img/frames/frame-1.png',
     selected: true,
     title: {
-      text: "Minimalist nature",
-      fontSize: "24px",
-      fontFamily: "Arial",
-      fontWeight: "800",
-      fontColor: "blue"
+      text: 'Minimalist nature',
+      fontSize: '24px',
+      fontFamily: 'Arial',
+      fontWeight: '800',
+      fontColor: 'blue'
     },
     subTitle: {
-      text: "Testing Sub Title 1",
-      fontSize: "18px",
-      fontFamily: "Arial",
-      fontWeight: "400",
-      fontColor: "red"
+      text: 'Testing Sub Title 1',
+      fontSize: '18px',
+      fontFamily: 'Arial',
+      fontWeight: '400',
+      fontColor: 'red'
     },
     colors: [
       {
         id: 1,
-        color: "#F27121"
+        color: '#F27121'
       },
       {
         id: 2,
-        color: "#3D9984"
+        color: '#3D9984'
       },
       {
         id: 3,
-        color: "#D6B0FF"
+        color: '#D6B0FF'
       }
     ],
     fonts: [
       {
         id: 1,
-        name: "Josefin sans"
+        name: 'Josefin sans'
       }
     ]
   }

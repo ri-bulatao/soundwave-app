@@ -49,7 +49,7 @@ export const controlsSlice = createSlice({
     },
     toggleEditBackground: (state: ControlsState, action: PayloadAction<boolean>) => {
       state.controls.editBackground = action.payload
-      if(action.payload) {
+      if (action.payload) {
         state.controls.showTemplates = false
         state.controls.showTitleEditor = false
         state.controls.showSubtitleEditor = false

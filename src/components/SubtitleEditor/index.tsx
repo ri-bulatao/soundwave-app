@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import React, { type MouseEventHandler } from 'react'
 import './index.scss'
 import type { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,11 +28,11 @@ const TitleEditor: React.FC = () => {
       return canvasClass.includes(element)
     })
 
-    if(controls.showTitleEditor) {
+    if (controls.showTitleEditor) {
       dispatch(toggleTitleEditor(filteredClassList.length > 0))
     }
 
-    if(controls.showSubtitleEditor) {
+    if (controls.showSubtitleEditor) {
       dispatch(toggleSubtitleEditor(filteredClassList.length > 0))
     }
   }
