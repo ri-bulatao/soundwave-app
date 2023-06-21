@@ -7,6 +7,8 @@ import { toggleShowTemplates, toggleEditBackground } from '../../redux/reducers/
 import { changeBackgroundImage } from '../../redux/reducers/customizer'
 import { updateSpecifications } from '../../redux/reducers/canvas'
 import '~/pages/customizer/customizer.scss'
+import TitleEditor from '../../components/TitleEditor'
+import SubtitleEditor from '../../components/SubtitleEditor'
 
 // Components
 import DragAndDropImageInput from '../../components/DragAndDropImageInput/DragAndDropImageInput'
@@ -85,7 +87,7 @@ export const Customizer: React.FC = () => {
   }
 
   const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
-    const target = event.currentTarget as HTMLDivElement
+    const target = event.target as HTMLDivElement
     const classList = Array.from(target.classList)
     const filteredClassList = classList.filter((element: string) => {
       const canvasClass = ['overlay', 'frame-color-selection-img', 'frame-color-selection-input', 'd-d-content']
@@ -100,6 +102,7 @@ export const Customizer: React.FC = () => {
     setShowConfirmation(false)
     console.log('reset')
   }
+
   const handleCancelDelete = (): void => {
     setShowConfirmation(false)
   }
@@ -107,6 +110,7 @@ export const Customizer: React.FC = () => {
     () => {},
     [audioFile, showConfirmation]
   )
+
   return (
     <>
       <div className='template-container'>
@@ -115,10 +119,20 @@ export const Customizer: React.FC = () => {
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
         </div>
         <div className='col-12 customizer-container' onClick={handleCloseEditLayoutBackground}>
-          { controls.showTemplates
-            ? <div className="col-5 input-container">
-                <Templates />
+          { controls.showTemplates || controls.showTitleEditor || controls.showSubtitleEditor
+            ? (
+              <div className="col-5 input-container">
+                {controls.showTemplates &&
+                  <Templates />
+                }
+                {controls.showTitleEditor &&
+                  <TitleEditor />
+                }
+                {controls.showSubtitleEditor &&
+                  <SubtitleEditor />
+                }
               </div>
+              )
             : <div className='col-5 input-container'>
             { controls.editBackground
               ? (<Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
@@ -253,8 +267,7 @@ export const Customizer: React.FC = () => {
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 confirmText='Continue'
-                cancelText='Cancel'
-              />
+                cancelText='Cancel' />
               : null
             }
           </div>

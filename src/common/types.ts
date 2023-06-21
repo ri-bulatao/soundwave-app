@@ -17,10 +17,13 @@ export interface Template {
     fontColor: string
   }
   colors: any[]
+  fonts: any[]
 }
 
 export interface Controls {
   showTemplates: boolean
+  showTitleEditor: boolean
+  showSubtitleEditor: boolean
   editBackground: boolean
   showFilterDropdown: boolean
 }
@@ -89,8 +92,8 @@ export interface Canvas {
   size: string
   totalPrice: number
   content: {
-    title: string
-    subtitle: string
+    title: CanvasTitle
+    subtitle: CanvasTitle
   }
   specifications: {
     audioBuffer: any
@@ -98,4 +101,11 @@ export interface Canvas {
     width: number
     height: number
   }
+}
+
+export interface CanvasTitle {
+  text: string
+  family: string
+  weight: number
+  size: number
 }

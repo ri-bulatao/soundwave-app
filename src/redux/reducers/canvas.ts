@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { Canvas } from '../../common/types'
+import type { Canvas, CanvasTitle } from '../../common/types'
 
 const initialState: Canvas = {
   id: '',
@@ -9,8 +9,18 @@ const initialState: Canvas = {
   size: 'Small',
   totalPrice: 0,
   content: {
-    title: 'Enter Title',
-    subtitle: 'Enter Subtitle'
+    title: {
+      text: 'ENTER YOUR TITLE',
+      family: 'Cormorant',
+      weight: 500,
+      size: 56
+    },
+    subtitle: {
+      text: 'Enter your subtitle here',
+      family: 'Arial',
+      size: 18,
+      weight: 400
+    }
   },
   specifications: {
     audioBuffer: null,
@@ -24,8 +34,11 @@ export const canvasSlice = createSlice({
   name: 'canvas',
   initialState,
   reducers: {
-    updateTitle: (state, action: PayloadAction<string>) => {
+    updateTitle: (state: Canvas, action: PayloadAction<CanvasTitle>) => {
       state.content.title = action.payload
+    },
+    updateSubtitle: (state: Canvas, action: PayloadAction<CanvasTitle>) => {
+      state.content.subtitle = action.payload
     },
     updateOrientation: (state, action: PayloadAction<string>) => {
       state.orientation = action.payload
@@ -42,6 +55,6 @@ export const canvasSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { updateTitle, updateOrientation, updateSpecifications } = canvasSlice.actions
+export const { updateTitle, updateSubtitle, updateOrientation, updateSpecifications } = canvasSlice.actions
 
 export default canvasSlice.reducer
