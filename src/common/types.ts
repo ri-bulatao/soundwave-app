@@ -29,6 +29,9 @@ export interface Controls {
   showImageSizeAlert: boolean
   showFileSizeAlert: boolean
   showRemoveAudioConfirmation: boolean
+  currentStep: string
+  audioComplete: boolean
+  materialComplete: boolean
 }
 
 export interface Customizer {
@@ -113,4 +116,9 @@ export interface CanvasTitle {
   family: string
   weight: number
   size: number
+}
+
+export interface Audio {
+  name: string
+  file: File | null
 }

@@ -9,6 +9,22 @@
 
 .accordion-button.collapsed {
   .upload-header {
+    .accordion-icon {
+      path {
+        stroke: #B3B2B2;
+      }
+    }
+
+    .complete {
+      color: #222222;
+
+      .accordion-icon {
+        path {
+          stroke: #222222;
+        }
+      }
+    }
+
     .upload-desc {
       display: none;
     }

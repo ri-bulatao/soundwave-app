@@ -103,9 +103,9 @@ button.accordion-button {
     height: 24px;
     width: 24px;
 
-    path {
-      stroke: $gray-600 !important;
-    }
+    // path {
+    //   stroke: $gray-600 !important;
+    // }
   }
 
   &::after {
@@ -115,9 +115,9 @@ button.accordion-button {
   &[aria-expanded="true"] {
     color: $font-color-dark !important;
 
-    .accordion-icon path {
-      stroke: $font-color-dark !important;
-    }
+    // .accordion-icon path {
+    //   stroke: $font-color-dark !important;
+    // }
   }
 
   .accordion-icon {
