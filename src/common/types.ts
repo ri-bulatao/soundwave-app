@@ -34,6 +34,7 @@ export interface Controls {
   materialComplete: boolean
   currentEditting: string
   showTitleSaved: boolean
+  isContinueDisabled: boolean
 }
 
 export interface Customizer {

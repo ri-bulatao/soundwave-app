@@ -23,7 +23,8 @@ const initialState: ControlsState = {
     audioComplete: false,
     materialComplete: false,
     currentEditting: '',
-    showTitleSaved: false
+    showTitleSaved: false,
+    isContinueDisabled: true
   }
 }
 
@@ -89,6 +90,9 @@ export const controlsSlice = createSlice({
     },
     setShowtitleSaved: (state: ControlsState, action: PayloadAction<boolean>) => {
       state.controls.showTitleSaved = action.payload
+    },
+    setIsContinueDisabled: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.isContinueDisabled = action.payload
     }
   }
 })
@@ -106,7 +110,8 @@ export const {
   setAudioComplete,
   setMaterialComplete,
   setCurrentEditting,
-  setShowtitleSaved
+  setShowtitleSaved,
+  setIsContinueDisabled
 } = controlsSlice.actions
 
 export default controlsSlice.reducer
