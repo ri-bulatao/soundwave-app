@@ -17,10 +17,12 @@ import ImageUploadAccordion from '../../components/Accordions/ImageUploadAccordi
 import AudioUploadAccordion from '../../components/Accordions/AudioUploadAccordion'
 import MaterialAccordion from '../../components/Accordions/MaterialAccordion'
 import OrderReviewAccordion from '../../components/Accordions/OrderReviewAccordion'
+import { setAudio, setMaterialFrame, setMaterialSize } from '../../redux/reducers/checkout'
 
 export const Customizer: React.FC = () => {
   const { controls } = useSelector((state: RootState) => state.controls)
-  const { orientation } = useSelector((state: RootState) => state.canvas)
+  const { selected } = useSelector((state: RootState) => state.selected)
+  const { orientation, audioFile, audioFileName } = useSelector((state: RootState) => state.canvas)
   const dispatch = useDispatch()
 
   const handleCloseEditLayoutBackground: MouseEventHandler<HTMLDivElement> = (event) => {
@@ -34,6 +36,11 @@ export const Customizer: React.FC = () => {
   }
 
   const handleConfirmDelete = (): void => {
+    const payload = {
+      file: null,
+      name: ''
+    }
+    dispatch(setAudio(payload))
     dispatch(setAudioFile(null))
     dispatch(updateSpecifications({ audio: null }))
     dispatch(toggleShowAudioResetConfirmation(false))
@@ -41,6 +48,23 @@ export const Customizer: React.FC = () => {
 
   const handleCancelDelete = (): void => {
     dispatch(toggleShowAudioResetConfirmation(false))
+  }
+
+  const handleCurrentStep = (): void => {
+
+    if (controls.currentStep === 'audio') {
+      const payload = {
+        file: audioFile,
+        name: audioFileName
+      }
+      dispatch(setAudio(payload))
+    }
+
+    if (controls.currentStep === 'material') {
+      dispatch(setMaterialFrame(selected.frame))
+      dispatch(setMaterialSize(selected.size))
+    }
+
   }
 
   return (
@@ -88,7 +112,7 @@ export const Customizer: React.FC = () => {
                         <button className='btn-transparent col-6'>
                           Preview
                         </button>
-                        <button className='btn btn-primary col-6'>
+                        <button onClick={handleCurrentStep} className='btn btn-primary col-6'>
                           Continue
                         </button>
                       </div>

@@ -18,7 +18,10 @@ const initialState: ControlsState = {
     showFilterDropdown: false,
     showImageSizeAlert: false,
     showFileSizeAlert: false,
-    showRemoveAudioConfirmation: false
+    showRemoveAudioConfirmation: false,
+    currentStep: 'audio',
+    audioComplete: false,
+    materialComplete: false,
   }
 }
 
@@ -69,6 +72,15 @@ export const controlsSlice = createSlice({
     },
     toggleShowAudioResetConfirmation: (state: ControlsState, action: PayloadAction<boolean>) => {
       state.controls.showRemoveAudioConfirmation = action.payload
+    },
+    setCurrentStep: (state: ControlsState, action: PayloadAction<string>) => {
+      state.controls.currentStep = action.payload
+    },
+    setAudioComplete: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.audioComplete = action.payload
+    },
+    setMaterialComplete: (state: ControlsState, action: PayloadAction<boolean>) => {
+      state.controls.materialComplete = action.payload
     }
   }
 })
@@ -81,7 +93,10 @@ export const {
   toggleShowFilterDropdown,
   toggleShowImageSizeAlert,
   toggleShowFileSizeAlert,
-  toggleShowAudioResetConfirmation
+  toggleShowAudioResetConfirmation,
+  setCurrentStep,
+  setAudioComplete,
+  setMaterialComplete
 } = controlsSlice.actions
 
 export default controlsSlice.reducer
