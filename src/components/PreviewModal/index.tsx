@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './index.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowPreviewModal } from '../../redux/reducers/controls'
-import { RootState } from '../../redux/store'
+import type { RootState } from '../../redux/store'
 
 const PreviewModal: React.FC = () => {
   const dispatch = useDispatch()

@@ -23,12 +23,12 @@ const TitleEditor: React.FC = () => {
   }
 
   useEffect(() => {
-    const showAlert = setTimeout(function() {
+    const showAlert = setTimeout(() => {
       if (!hasUpdate) {
         return
       }
       dispatch(setShowtitleSaved(true))
-      setTimeout(function() {
+      setTimeout(() => {
         dispatch(setShowtitleSaved(false))
       }, 2000)
     }, 1500)

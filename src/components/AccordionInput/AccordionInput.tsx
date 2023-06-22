@@ -49,8 +49,8 @@ export const AccordionInput: React.FC = () => {
   }
 
   useEffect(() => {
-      console.log('Testing')
-    }, [])
+    console.log('Testing')
+  }, [])
 
   return (
     <>
