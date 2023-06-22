@@ -116,7 +116,7 @@ const Canvas: React.FC = () => {
         onCancel={() => { setShowPrompt(false) }}
         onConfirm={reloadPage}
         cancelText='Cancel'
-        confirmText='Confirm'/>
+        confirmText='Yes, Close'/>
     </>
   )
 }
