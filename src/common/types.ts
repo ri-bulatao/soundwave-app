@@ -36,6 +36,7 @@ export interface Controls {
   showTitleSaved: boolean
   isContinueDisabled: boolean
   showPreviewModal: boolean
+  currentActiveAccordion: string
 }
 
 export interface Customizer {

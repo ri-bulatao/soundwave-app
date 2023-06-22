@@ -1,8 +1,9 @@
 import React from 'react'
 import { Accordion } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { type RootState } from '../../redux/store'
 import './index.scss'
+import { setCurrentActiveAccordion } from '../../redux/reducers/controls'
 
 interface AccordionProps {
   eventKey: string
@@ -11,9 +12,10 @@ interface AccordionProps {
 const OrderReviewAccordion: React.FC<AccordionProps> = ({ eventKey }) => {
   const { selected } = useSelector((state: RootState) => state.selected)
   const { orientation } = useSelector((state: RootState) => state.canvas)
+  const dispatch = useDispatch()
 
   return (
-    <Accordion.Item eventKey={eventKey}>
+    <Accordion.Item onClick={() => dispatch(setCurrentActiveAccordion('2'))} eventKey={eventKey}>
       <Accordion.Header>
         <div className='upload-header'>
           <div>

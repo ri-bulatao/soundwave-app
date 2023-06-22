@@ -3,7 +3,7 @@ import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import { toggleShowTemplates, toggleEditBackground, toggleShowAudioResetConfirmation, setIsContinueDisabled, setShowPreviewModal } from '../../redux/reducers/controls'
+import { toggleShowTemplates, toggleEditBackground, toggleShowAudioResetConfirmation, setIsContinueDisabled, setShowPreviewModal, setCurrentActiveAccordion } from '../../redux/reducers/controls'
 import { setAudioFile, updateSpecifications } from '../../redux/reducers/canvas'
 import '~/pages/customizer/customizer.scss'
 import TitleEditor from '../../components/TitleEditor'
@@ -60,12 +60,14 @@ export const Customizer: React.FC = () => {
       }
       dispatch(setAudio(payload))
       dispatch(setIsContinueDisabled(true))
+      dispatch(setCurrentActiveAccordion('1'))
     }
 
     if (controls.currentStep === 'material') {
       dispatch(setMaterialFrame(selected.frame))
       dispatch(setMaterialSize(selected.size))
       dispatch(setIsContinueDisabled(true))
+      dispatch(setCurrentActiveAccordion('2'))
     }
   }
 
@@ -99,7 +101,7 @@ export const Customizer: React.FC = () => {
                   </Accordion>
                 )
               : (
-                  <Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
+                  <Accordion defaultActiveKey={['0']} activeKey={controls.currentActiveAccordion} className='main-accordion-layout'>
                     {/* Audio Upload Accordion */}
                     <AudioUploadAccordion eventKey='0' />
 

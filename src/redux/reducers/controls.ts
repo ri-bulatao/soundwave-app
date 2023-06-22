@@ -25,11 +25,12 @@ const initialState: ControlsState = {
     currentEditting: '',
     showTitleSaved: false,
     isContinueDisabled: true,
-    showPreviewModal: false
+    showPreviewModal: false,
+    currentActiveAccordion: '0'
   }
 }
 
-export const controlsSlice = createSlice({
+export const controlsSlice: any = createSlice({
   name: 'controls',
   initialState,
   reducers: {
@@ -97,6 +98,9 @@ export const controlsSlice = createSlice({
     },
     setShowPreviewModal: (state: ControlsState, action: PayloadAction<boolean>) => {
       state.controls.showPreviewModal = action.payload
+    },
+    setCurrentActiveAccordion: (state: ControlsState, action: PayloadAction<string>) => {
+      state.controls.currentActiveAccordion = action.payload
     }
   }
 })
@@ -116,7 +120,8 @@ export const {
   setCurrentEditting,
   setShowtitleSaved,
   setIsContinueDisabled,
-  setShowPreviewModal
+  setShowPreviewModal,
+  setCurrentActiveAccordion
 } = controlsSlice.actions
 
 export default controlsSlice.reducer
