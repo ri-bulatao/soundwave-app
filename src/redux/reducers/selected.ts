@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { Template, Selected, Frame, Size, Color } from '../../common/types'
-import { Product } from 'shopify-buy'
+import type { Product } from 'shopify-buy'
 
 export interface SelectedState {
   selected: Selected

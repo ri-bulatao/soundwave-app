@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { Audio, Frame, Size } from '../../common/types'
-import { Product } from 'shopify-buy'
+import type { Product } from 'shopify-buy'
 
 export interface CheckoutState {
   audio: Audio
   material: {
     frame: Frame
     size: Size
-  },
+  }
   price: {
     total: number
     code: string
@@ -60,15 +60,18 @@ export const checkoutSlice = createSlice({
     setTotalPrice: (state: CheckoutState, action: PayloadAction<any>) => {
       const payload = action.payload
 
-      if (payload.product !== null)
-      payload.product.variants.map((variant: any) => {
-        if (payload.size.key === variant.title) {
-          state.price = {
-            total: variant.price.amount,
-            code: variant.price.currencyCode
+      if (payload.product !== null) {
+        payload.product.variants.map((variant: any) => {
+          if (payload.size.key === variant.title) {
+            state.price = {
+              total: variant.price.amount,
+              code: variant.price.currencyCode
+            }
           }
-        }
-      })
+
+          return variant
+        })
+      }
     }
   }
 })

@@ -1,5 +1,3 @@
-import { Product } from "shopify-buy"
-
 export interface Template {
   id: number
   image: string

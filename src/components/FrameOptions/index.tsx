@@ -3,13 +3,12 @@ import './index.css'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../../redux/store'
 import { setFrames } from '../../redux/reducers/listing'
-import { setFrame, setProduct } from '../../redux/reducers/selected'
 import { setIsContinueDisabled } from '../../redux/reducers/controls'
-import { PricePayload, setTotalPrice } from '../../redux/reducers/checkout'
-import { Product } from 'shopify-buy'
+import type { Product } from 'shopify-buy'
+import { setProduct } from '../../redux/reducers/selected'
+import { setTotalPrice } from '../../redux/reducers/checkout'
 
 const FrameOptions: React.FC = () => {
-  const { listing } = useSelector((state: RootState) => state.listing)
   const { selected } = useSelector((state: RootState) => state.selected)
   const { products } = useSelector((state: RootState) => state.products)
   const dispatch = useDispatch()
@@ -55,7 +54,7 @@ const FrameOptions: React.FC = () => {
           <img src={product.images[0].src} alt={product.images[0].altText} />
           <span>{product.title}</span>
           </label>
-        ))
+      ))
       }
     </div>
   )

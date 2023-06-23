@@ -9,7 +9,7 @@ import './Canvas.scss'
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 
 const Canvas: React.FC = () => {
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false)
   const { orientation, specifications, content } = useSelector((state: RootState) => state.canvas)
   const { title, subtitle } = content
   const { customizer } = useSelector((state: RootState) => state.customizer)
@@ -36,23 +36,23 @@ const Canvas: React.FC = () => {
     e.preventDefault()
   }
 
-  const disableRefreshHotkey = () => {
+  const disableRefreshHotkey = (): void => {
     window.addEventListener('keydown', function (e) {
       if (e.ctrlKey && e.key === 'r') {
-        e.preventDefault();
+        e.preventDefault()
         setShowPrompt(true)
       }
 
       if (e.keyCode === 116) {
-        e.preventDefault();
+        e.preventDefault()
         setShowPrompt(true)
       }
 
       if (e.key === 'PrtSc') {
-        e.preventDefault();
+        e.preventDefault()
         alert('disabled print screen')
       }
-    });
+    })
   }
 
   const reloadPage = (): void => {
@@ -61,20 +61,18 @@ const Canvas: React.FC = () => {
   }
 
   useEffect(() => {
-    // disableRefreshHotkey()
-    const unloadHandler = (event: any) => {
-      if (true) {
-        event.preventDefault()
-        event.returnValue = ""
-        setShowPrompt(true)
-      }
+    disableRefreshHotkey()
+    const unloadHandler = (event: any): void => {
+      event.preventDefault()
+      event.returnValue = ''
+      setShowPrompt(true)
     }
-    // window.addEventListener("beforeunload", unloadHandler)
+    window.addEventListener('beforeunload', unloadHandler)
 
-    // document.addEventListener('contextmenu', handleContextMenu)
+    document.addEventListener('contextmenu', handleContextMenu)
 
     return () => {
-      // document.removeEventListener('contextmenu', handleContextMenu)
+      document.removeEventListener('contextmenu', handleContextMenu)
     }
   }, [])
 

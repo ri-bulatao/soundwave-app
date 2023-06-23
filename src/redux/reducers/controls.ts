@@ -30,7 +30,7 @@ const initialState: ControlsState = {
   }
 }
 
-export const controlsSlice: any = createSlice({
+export const controlsSlice = createSlice({
   name: 'controls',
   initialState,
   reducers: {

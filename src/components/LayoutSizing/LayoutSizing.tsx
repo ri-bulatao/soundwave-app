@@ -28,8 +28,8 @@ const LayoutSizing: React.FC = () => {
     dispatch(setIsContinueDisabled(false))
 
     const payload = {
-      product: product,
-      size: size
+      product,
+      size
     }
 
     dispatch(setTotalPrice(payload))

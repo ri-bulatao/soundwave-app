@@ -50,7 +50,7 @@ const OrderReviewAccordion: React.FC<AccordionProps> = ({ eventKey }) => {
             ORIENTATION<strong>{orientation}</strong>
           </li>
           <li className="order-item">
-            FRAME TYPE<strong>{`${selected.product !== null ? selected.product.title : ''}`}</strong>
+            FRAME TYPE<strong>{selected.product !== null ? selected.product.title : ''}</strong>
           </li>
           <li className="order-item">
             SIZE<strong>{selected.size.title}</strong>

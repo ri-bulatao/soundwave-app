@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   selected: selectedReducer,
   canvas: canvasReducer,
   checkout: checkoutReducer,
-  products: productsReducer,
+  products: productsReducer
 })
 
 export default rootReducer
