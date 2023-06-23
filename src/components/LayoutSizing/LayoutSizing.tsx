@@ -33,20 +33,20 @@ const LayoutSizing: React.FC = () => {
 
   return (
     <div className='sizing-container'>
-        {sizes.map((option: any) => (
-          <label className={`col-6 frame-selection ${size.title === option.title ? 'active' : ''}`} key={option.title}>
-            <span className='custom-select'></span>
-            <input
-                type="radio"
-                value={option.title}
-                checked={size.title === option.title}
-                onChange={() => { setSelectedSize(option) }}
-            />
-            <p>{option.title}</p>
-            <span>{option.size_inc}</span>
-            <span>{option.size_cm}</span>
-          </label>
-        ))}
+      {sizes.map((option: any) => (
+        <label className={`col-6 frame-selection ${size.title === option.title ? 'active' : ''}`} key={option.title}>
+          <span className='select-box custom-select'></span>
+          <input
+            type="radio"
+            value={option.title}
+            checked={size.title === option.title}
+            onChange={() => { setSelectedSize(option) }}
+          />
+          <p>{option.title}</p>
+          <span>{option.size_inc}</span>
+          <span>{option.size_cm}</span>
+        </label>
+      ))}
     </div>
   )
 }

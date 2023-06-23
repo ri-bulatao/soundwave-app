@@ -77,7 +77,7 @@ export const Customizer: React.FC = () => {
           <button onClick={() => dispatch(toggleShowTemplates(false))} className="close-template-button"><img src="/src/assets/icons/close.png" alt="" className="icon" /></button>
         </div>
         <div className='col-12 customizer-container' onClick={handleCloseEditLayoutBackground}>
-          { controls.showTemplates || controls.showTitleEditor || controls.showSubtitleEditor
+          {controls.showTemplates || controls.showTitleEditor || controls.showSubtitleEditor
             ? (
               <div className="col-5 input-container">
                 {controls.showTemplates &&
@@ -90,15 +90,15 @@ export const Customizer: React.FC = () => {
                   <SubtitleEditor />
                 }
               </div>
-              )
+            )
             : <div className='col-5 input-container'>
-            { controls.editBackground
-              ? (
+              {controls.editBackground
+                ? (
                   <Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
                     <ImageUploadAccordion eventKey='0' />
                   </Accordion>
                 )
-              : (
+                : (
                   <Accordion defaultActiveKey={['0']} className='main-accordion-layout'>
                     {/* Audio Upload Accordion */}
                     <AudioUploadAccordion eventKey='0' />
@@ -110,25 +110,25 @@ export const Customizer: React.FC = () => {
                     <OrderReviewAccordion eventKey='2' />
 
                     {(!controls.showTemplates) &&
-                      <div className='input-btns col-12'>
-                        <button onClick={() => { dispatch(setShowPreviewModal(true)) }} className='btn-transparent col-6'>
+                      <div className='input-btns col-12 customizer-panel_navigation'>
+                        <button onClick={() => { dispatch(setShowPreviewModal(true)) }} className='btn btn-transparent col-6'>
                           Preview
                         </button>
-                        { controls.isContinueDisabled
+                        {controls.isContinueDisabled
                           ? <button disabled className='btn disabled col-6'>
-                              Continue
-                            </button>
+                            Continue
+                          </button>
                           : <button onClick={handleCurrentStep} className='btn btn-primary col-6'>
-                              Continue
-                            </button>
+                            Continue
+                          </button>
                         }
                       </div>
                     }
                   </Accordion>
                 )
-            }
-            {controls.showRemoveAudioConfirmation
-              ? <ConfirmationModal
+              }
+              {controls.showRemoveAudioConfirmation
+                ? <ConfirmationModal
                   isOpen={controls.showRemoveAudioConfirmation}
                   message="Are you sure you want to remove the audio you uploaded?"
                   subMessage="You will not be able to undo this action."
@@ -136,12 +136,12 @@ export const Customizer: React.FC = () => {
                   onCancel={handleCancelDelete}
                   confirmText='Continue'
                   cancelText='Cancel' />
-              : null
-            }
-            {controls.showPreviewModal &&
-              <PreviewModal />
-            }
-          </div>
+                : null
+              }
+              {controls.showPreviewModal &&
+                <PreviewModal />
+              }
+            </div>
           }
           {/* Canvas Container */}
           <div className={`col-7 canvas-container ${orientation}`}>

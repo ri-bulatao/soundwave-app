@@ -24,12 +24,6 @@
   height: 100vh;
 }
 
-@media (max-width: 980px) {
-  #root {
-    padding: 10px;
-  }
-}
-
 body {
   background: var(--background-color-light);
   font-family: 'SF Pro';
@@ -76,6 +70,7 @@ body {
 
   padding: 8px 16px;
 }
+
 .btn-circle {
   display: flex;
   flex-direction: row;
@@ -89,23 +84,25 @@ body {
   max-width: 40px;
   padding: 12px;
 }
+
 .btn-transparent {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   color: $font-color-dark;
-  
+
   background: transparent;
   border: none;
 
   height: 48px;
 }
-.btn-primary {  
+
+.btn-primary {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
 
   border-radius: 8px !important;
-} 
+}
