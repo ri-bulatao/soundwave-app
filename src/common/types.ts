@@ -1,3 +1,5 @@
+import { Product } from "shopify-buy"
+
 export interface Template {
   id: number
   image: string
@@ -45,6 +47,7 @@ export interface Customizer {
 }
 
 export interface Size {
+  key: string
   inch: string
   cm: string
   title: string
@@ -84,6 +87,7 @@ export interface Listing {
 }
 
 export interface Selected {
+  product: any
   frame: Frame
   size: Size
   color: Color
