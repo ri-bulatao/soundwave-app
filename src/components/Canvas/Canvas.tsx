@@ -61,18 +61,19 @@ const Canvas: React.FC = () => {
   }
 
   useEffect(() => {
-    disableRefreshHotkey()
-    const unloadHandler = (event: any): void => {
-      event.preventDefault()
-      event.returnValue = ''
-      setShowPrompt(true)
-    }
-    window.addEventListener('beforeunload', unloadHandler)
+    // disableRefreshHotkey()
 
-    document.addEventListener('contextmenu', handleContextMenu)
+    // const unloadHandler = (event: any): void => {
+    //   event.preventDefault()
+    //   event.returnValue = ''
+    //   setShowPrompt(true)
+    // }
+    // window.addEventListener('beforeunload', unloadHandler)
+
+    // document.addEventListener('contextmenu', handleContextMenu)
 
     return () => {
-      document.removeEventListener('contextmenu', handleContextMenu)
+      // document.removeEventListener('contextmenu', handleContextMenu)
     }
   }, [])
 
