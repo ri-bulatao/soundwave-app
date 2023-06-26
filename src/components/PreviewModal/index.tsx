@@ -52,7 +52,7 @@ const PreviewModal: React.FC = () => {
               <div className="modal-footer">
                 { selected.template.thumbnails.map(thumbnail => (
                   <div onClick={() => { updateSelectedThumbnail(thumbnail) }} className="card" key={thumbnail.id}>
-                    <img className={`thumbnail ${thumbnail.selected ? 'active' : ''}`} src={thumbnail.image} alt="" />
+                    <img className={`thumbnail ${thumbnail.selected === true ? 'active' : ''}`} src={thumbnail.image} alt="" />
                   </div>
                 ))
                 }

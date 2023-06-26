@@ -112,7 +112,7 @@ export const selectedSlice = createSlice({
       state.selected.color = action.payload
     },
     setTemplate: (state: SelectedState, action: PayloadAction<Template>) => {
-      let template = action.payload
+      const template = action.payload
       state.selected.template.selectedThumbnail = template.thumbnails[0]
       state.selected.template = template
     },
