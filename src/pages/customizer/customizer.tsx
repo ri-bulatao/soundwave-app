@@ -106,6 +106,9 @@ export const Customizer: React.FC = () => {
         node.style.left = '50%'
         node.style.transform = 'translateX(-50%)'
       })
+      .catch(async (err) => {
+        console.log(err)
+      })
 
     dispatch(setShowPreviewModal(true))
   }

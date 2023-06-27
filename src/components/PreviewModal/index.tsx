@@ -43,7 +43,7 @@ const PreviewModal: React.FC = () => {
               <div className="modal-body">
                 <div className="image-wrapper">
                   <img className="image" src={selected.template.selectedThumbnail.image} alt="" />
-                  <img src={customizedImage ? customizedImage : ''} alt="" className="frame" />
+                  <img src={(customizedImage !== null) ? customizedImage : ''} alt="" className="frame" />
                   <div className="colors-container">
                     <div className="color-box active"></div>
                     <div className="color-box"></div>
