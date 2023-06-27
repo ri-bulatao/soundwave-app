@@ -61,20 +61,20 @@ const Canvas: React.FC = () => {
   }
 
   useEffect(() => {
-    disableRefreshHotkey()
+    // disableRefreshHotkey()
 
-    const unloadHandler = (event: any): void => {
-      event.preventDefault()
-      event.returnValue = ''
-      setShowPrompt(true)
-    }
-    window.addEventListener('beforeunload', unloadHandler)
+    // const unloadHandler = (event: any): void => {
+    //   event.preventDefault()
+    //   event.returnValue = ''
+    //   setShowPrompt(true)
+    // }
+    // window.addEventListener('beforeunload', unloadHandler)
 
-    document.addEventListener('contextmenu', handleContextMenu)
+    // document.addEventListener('contextmenu', handleContextMenu)
 
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu)
-    }
+    // return () => {
+    //   document.removeEventListener('contextmenu', handleContextMenu)
+    // }
   }, [])
 
   return (
@@ -86,7 +86,7 @@ const Canvas: React.FC = () => {
             <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
           </button>
         </div>
-        <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
+        <div id="canvas-container" className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
           <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
           <div onClick={editTitle} className={`canvas-text title ${controls.currentEditting === 'title' ? 'current' : ''}`}>
             <div style={{ fontFamily: title.family, fontWeight: title.weight, fontSize: `${title.size}px` }} className={`text ${controls.currentEditting === 'title' ? 'current' : ''}`}>{title.text}</div>

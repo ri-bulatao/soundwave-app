@@ -52,10 +52,23 @@
 
     .image-wrapper {
       position: relative;
+      height: 536px;
 
       .image {
+        position: absolute;
         height: 100%;
         width: 100%;
+        object-fit: cover;
+      }
+
+      .frame {
+        position: absolute;
+        border: 2px solid #000;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 200px;
+        width: 250px;
         object-fit: cover;
       }
 
