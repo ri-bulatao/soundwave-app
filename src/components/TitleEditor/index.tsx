@@ -33,7 +33,6 @@ const TitleEditor: React.FC = () => {
 
     if (controls.showTitleEditor) {
       dispatch(toggleTitleEditor(filteredClassList.length > 0))
-    } else {
       dispatch(setCurrentEditting(''))
     }
 
