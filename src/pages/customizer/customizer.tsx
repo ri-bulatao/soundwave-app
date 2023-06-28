@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,8 +24,10 @@ import { fetchAllProducts } from '../../redux/reducers/products'
 import config from '../../config'
 import Client from 'shopify-buy'
 import { setProduct } from '../../redux/reducers/selected'
+import { changeLayoutState } from '../../redux/reducers/customizer'
 
 export const Customizer: React.FC = () => {
+  
   const { controls } = useSelector((state: RootState) => state.controls)
   const { selected } = useSelector((state: RootState) => state.selected)
   const { orientation, audioFile, audioFileName } = useSelector((state: RootState) => state.canvas)
@@ -114,6 +116,7 @@ export const Customizer: React.FC = () => {
   }
 
   useEffect(() => {
+    dispatch(changeLayoutState())
     fetchProducts()
   }, [])
 
