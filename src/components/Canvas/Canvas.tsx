@@ -87,7 +87,7 @@ const Canvas: React.FC = () => {
             <img className={`orientation-icon ${orientation + '-orientation'}`} src='src/assets/icons/svg/orientation-icon.svg' alt='' />
           </button>
         </div>
-        <div className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
+        <div id="canvas-container" className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
           <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
           <div onClick={editTitle} className={`canvas-text title ${controls.currentEditting === 'title' ? 'current' : ''}`}>
             <div style={{ fontFamily:  `'${title.family}'`, fontWeight: title.weight, fontSize: `${appLayoutState == 'Desktop' ? title.size : 32}px` }} className={`text ${controls.currentEditting === 'title' ? 'current' : ''}`}>{title.text}</div>

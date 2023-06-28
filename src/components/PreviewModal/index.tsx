@@ -9,6 +9,7 @@ const PreviewModal: React.FC = () => {
   const dispatch = useDispatch()
   const { showPreviewModal } = useSelector((state: RootState) => state.controls.controls)
   const { selected } = useSelector((state: RootState) => state.selected)
+  const { customizedImage } = useSelector((state: RootState) => state.checkout)
 
   useEffect(() => {
     if (showPreviewModal) {
@@ -42,6 +43,7 @@ const PreviewModal: React.FC = () => {
               <div className="modal-body">
                 <div className="image-wrapper">
                   <img className="image" src={selected.template.selectedThumbnail.image} alt="" />
+                  <img src={(customizedImage !== null) ? customizedImage : ''} alt="" className="frame" />
                   <div className="colors-container">
                     <div className="color-box active"></div>
                     <div className="color-box"></div>

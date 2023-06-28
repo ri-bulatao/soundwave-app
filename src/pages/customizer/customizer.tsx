@@ -9,6 +9,7 @@ import '~/pages/customizer/customizer.scss'
 import TitleEditor from '../../components/TitleEditor'
 import SubtitleEditor from '../../components/SubtitleEditor'
 import PreviewModal from '../../components/PreviewModal'
+import html2canvas from 'html2canvas'
 
 // Components
 import ConfirmationModal from '../../components/ConfirmationModal/ConfirmationModal'
@@ -18,7 +19,7 @@ import ImageUploadAccordion from '../../components/Accordions/ImageUploadAccordi
 import AudioUploadAccordion from '../../components/Accordions/AudioUploadAccordion'
 import MaterialAccordion from '../../components/Accordions/MaterialAccordion'
 import OrderReviewAccordion from '../../components/Accordions/OrderReviewAccordion'
-import { setAudio, setMaterialFrame, setMaterialSize } from '../../redux/reducers/checkout'
+import { setAudio, setMaterialFrame, setMaterialSize, setCustomizedImage } from '../../redux/reducers/checkout'
 import { fetchAllProducts } from '../../redux/reducers/products'
 import config from '../../config'
 import Client from 'shopify-buy'
@@ -94,6 +95,26 @@ export const Customizer: React.FC = () => {
       })
   }
 
+  const handlePreviewClick = (): void => {
+    const node: HTMLElement | null = document.getElementById('canvas-container') as HTMLElement
+    node.style.position = 'unset'
+    node.style.left = '0'
+    node.style.transform = 'unset'
+
+    html2canvas(node)
+      .then(async (canvas) => {
+        dispatch(setCustomizedImage(canvas.toDataURL()))
+        node.style.position = 'relative'
+        node.style.left = '50%'
+        node.style.transform = 'translateX(-50%)'
+      })
+      .catch(async (err) => {
+        console.log(err)
+      })
+
+    dispatch(setShowPreviewModal(true))
+  }
+
   useEffect(() => {
     dispatch(changeLayoutState())
     fetchProducts()
@@ -141,7 +162,7 @@ export const Customizer: React.FC = () => {
 
                     {(!controls.showTemplates) &&
                       <div className='input-btns col-12'>
-                        <button onClick={() => { dispatch(setShowPreviewModal(true)) }} className='btn-transparent col-6'>
+                        <button onClick={handlePreviewClick} className='btn-transparent col-6'>
                           Preview
                         </button>
                         { controls.isContinueDisabled
