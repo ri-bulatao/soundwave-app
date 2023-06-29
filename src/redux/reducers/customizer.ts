@@ -3,8 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { Customizer } from '../../common/types'
 
 export interface CustomizerState {
-  customizer: Customizer,
-  appLayoutState: String
+  customizer: Customizer
+  appLayoutState: string
 }
 
 const initialState: CustomizerState = {
@@ -25,11 +25,11 @@ export const customizerSlice = createSlice({
     changeBackgroundImage: (state: CustomizerState, action: PayloadAction<string>) => {
       state.customizer.backgroundImage = action.payload
     },
-    changeLayoutState:  (state: CustomizerState) => {
+    changeLayoutState: (state: CustomizerState) => {
       console.log(window.innerWidth <= 768 ? 'Mobile' : 'Desktop')
       state.appLayoutState = window.innerWidth <= 768 ? 'Mobile' : 'Desktop'
     }
-  },
+  }
 })
 
 export const { changeLayout, changeBackgroundImage, changeLayoutState } = customizerSlice.actions

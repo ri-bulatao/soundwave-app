@@ -90,10 +90,10 @@ const Canvas: React.FC = () => {
         <div id="canvas-container" className={'canvas-content'} style={{ background: `url('${customizer.backgroundImage}'` }}>
           <div className={`overlay ${selected.color.view} ${selected.color.key}`}></div>
           <div onClick={editTitle} className={`canvas-text title ${controls.currentEditting === 'title' ? 'current' : ''}`}>
-            <div style={{ fontFamily:  `'${title.family}'`, fontWeight: title.weight, fontSize: `${appLayoutState == 'Desktop' ? title.size : 32}px` }} className={`text ${controls.currentEditting === 'title' ? 'current' : ''}`}>{title.text}</div>
+            <div style={{ fontFamily: `'${title.family}'`, fontWeight: title.weight, fontSize: `${appLayoutState === 'Desktop' ? title.size : 32}px` }} className={`text ${controls.currentEditting === 'title' ? 'current' : ''}`}>{title.text}</div>
           </div>
           <div onClick={editSubtitle} className={`canvas-text subtitle ${controls.currentEditting === 'subtitle' ? 'current' : ''}`}>
-            <div style={{ fontFamily: `'${subtitle.family}'`, fontWeight: subtitle.weight, fontSize: `${appLayoutState == 'Desktop' ? subtitle.size : 18}px` }} className={`text ${controls.currentEditting === 'subtitle' ? 'current' : ''}`}>{subtitle.text}</div>
+            <div style={{ fontFamily: `'${subtitle.family}'`, fontWeight: subtitle.weight, fontSize: `${appLayoutState === 'Desktop' ? subtitle.size : 18}px` }} className={`text ${controls.currentEditting === 'subtitle' ? 'current' : ''}`}>{subtitle.text}</div>
           </div>
           <div className="canvas-soundwave">
             {(specifications.audioBuffer !== null)
