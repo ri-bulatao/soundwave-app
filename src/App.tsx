@@ -4,21 +4,21 @@ import React, { useEffect } from 'react'
 import fontsData from './data/fonts.json'
 
 const App: React.FC = () => {
-
   useEffect(() => {
-    const loadFonts = async () => {
+    const loadFonts = async (): Promise<void> => {
       try {
-        await Promise.all(fontsData.map(font => {
+        await Promise.all(fontsData.map((font): string => {
           const fontFace = new FontFace(font.code, `url(${font.path})`)
-          fontFace.load().then(() => {
+          void fontFace.load().then((): void => {
             document.fonts.add(fontFace)
           })
+          return font.code
         }))
       } catch (error) {
         console.error('Failed to load fonts:', error)
       }
-    };
-    loadFonts()
+    }
+    void loadFonts()
   }, [])
   return (
     <>
