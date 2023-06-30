@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import type { RootState } from '../../redux/store'
 
 export const PreparePreview: React.FC = () => {
   const { customizedImage } = useSelector((state: RootState) => state.checkout)
@@ -19,8 +19,8 @@ export const PreparePreview: React.FC = () => {
       backgroundRepeat: 'noo-repeat',
       backgroundSize: 'cover',
       display: 'none'
-      }}>
-      <img src={customizedImage} className="customized" style={{ position: 'absolute', height: height, width: width, top: top, left: left }} />
+    }}>
+      <img src={customizedImage} className="customized" style={{ position: 'absolute', height, width, top, left }} />
     </div>
   )
 }

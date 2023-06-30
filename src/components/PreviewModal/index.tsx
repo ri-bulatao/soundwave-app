@@ -65,23 +65,23 @@ const PreviewModal: React.FC = () => {
                     </div>
                     <div className="modal-body">
                       { isPreviewLoading
-                      ? (
-                        <div className="loading_container">
-                          <div className="spinner-border" role="status">
-                            <span className="sr-only"></span>
+                        ? (
+                          <div className="loading_container">
+                            <div className="spinner-border" role="status">
+                              <span className="sr-only"></span>
+                            </div>
                           </div>
-                        </div>
-                      )
-                      : (
-                        <div className="image-wrapper">
-                          <img className="image" src={selected.template.previewImage} alt="" />
-                          <div className="colors-container">
-                            <div className="color-box active"></div>
-                            <div className="color-box"></div>
-                            <div className="color-box"></div>
+                          )
+                        : (
+                          <div className="image-wrapper">
+                            <img className="image" src={selected.template.previewImage} alt="" />
+                            <div className="colors-container">
+                              <div className="color-box active"></div>
+                              <div className="color-box"></div>
+                              <div className="color-box"></div>
+                            </div>
                           </div>
-                        </div>
-                      )
+                          )
                       }
 
                     </div>
@@ -104,27 +104,26 @@ const PreviewModal: React.FC = () => {
                   <div className="modal-content">
                     <div className="modal-body">
                       { isPreviewLoading
-                      ? (
-                        <div className="loading_container">
-                          <div className="spinner-border" role="status">
-                            <span className="sr-only"></span>
+                        ? (
+                          <div className="loading_container">
+                            <div className="spinner-border" role="status">
+                              <span className="sr-only"></span>
+                            </div>
                           </div>
-                        </div>
-                      )
-                      : (
-                        <div className="image-wrapper">
-                          <button onClick={() => { dispatch(setShowPreviewModal(false)) }} className="close-button">
-                            <img className="icon" src='/src/assets/icons/svg/mobile-close.svg' />
-                          </button>
-                          <img className="image" src={selected.template.previewImage} alt="" />
-                          <div className="colors-container">
-                            <div className="color-box active"></div>
-                            <div className="color-box"></div>
-                            <div className="color-box"></div>
+                          )
+                        : (
+                          <div className="image-wrapper">
+                            <button onClick={() => { dispatch(setShowPreviewModal(false)) }} className="close-button">
+                              <img className="icon" src='/src/assets/icons/svg/mobile-close.svg' />
+                            </button>
+                            <img className="image" src={selected.template.previewImage} alt="" />
+                            <div className="colors-container">
+                              <div className="color-box active"></div>
+                              <div className="color-box"></div>
+                              <div className="color-box"></div>
+                            </div>
                           </div>
-                        </div>
-                      )
-
+                          )
                       }
                     </div>
                     <div className="modal-footer">
@@ -141,7 +140,7 @@ const PreviewModal: React.FC = () => {
                 </div>
               </div>
             )
-        )
+      )
       }
     </>
   )

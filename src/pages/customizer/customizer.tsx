@@ -95,7 +95,7 @@ export const Customizer: React.FC = () => {
       })
   }
 
-  const setCurrentPreviewImage = () => {
+  const setCurrentPreviewImage = (): void => {
     const node: HTMLElement | null = document.getElementById('main_container_prepare') as HTMLElement
 
     node.style.display = 'block'

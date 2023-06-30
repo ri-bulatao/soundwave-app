@@ -80,7 +80,7 @@ const initialState: SelectedState = {
       thumbnails: [
         {
           id: 1,
-          image: "/src/assets/img/previews/preview-3.jpg",
+          image: '/src/assets/img/previews/preview-3.jpg',
           imagePosition: {
             height: '160px',
             width: '228px',
@@ -90,7 +90,7 @@ const initialState: SelectedState = {
         },
         {
           id: 2,
-          image: "/src/assets/img/previews/preview-1.jpg",
+          image: '/src/assets/img/previews/preview-1.jpg',
           imagePosition: {
             height: '101px',
             width: '143px',
@@ -100,7 +100,7 @@ const initialState: SelectedState = {
         },
         {
           id: 3,
-          image: "/src/assets/img/previews/preview-2.jpg",
+          image: '/src/assets/img/previews/preview-2.jpg',
           imagePosition: {
             height: '196px',
             width: '139px',
@@ -110,7 +110,7 @@ const initialState: SelectedState = {
         },
         {
           id: 4,
-          image: "/src/assets/img/previews/preview-3.jpg",
+          image: '/src/assets/img/previews/preview-3.jpg',
           imagePosition: {
             height: '160px',
             width: '228px',
