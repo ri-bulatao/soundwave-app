@@ -23,8 +23,9 @@ import { setAudio, setMaterialFrame, setMaterialSize, setCustomizedImage } from 
 import { fetchAllProducts } from '../../redux/reducers/products'
 import config from '../../config'
 import Client from 'shopify-buy'
-import { setProduct } from '../../redux/reducers/selected'
+import { setPreviewImage, setProduct, setSelectedThumbnail } from '../../redux/reducers/selected'
 import { changeLayoutState } from '../../redux/reducers/customizer'
+import { PreparePreview } from '../../components/PreparePreview'
 
 export const Customizer: React.FC = () => {
   const { controls } = useSelector((state: RootState) => state.controls)
@@ -94,6 +95,21 @@ export const Customizer: React.FC = () => {
       })
   }
 
+  const setCurrentPreviewImage = () => {
+    const node: HTMLElement | null = document.getElementById('main_container_prepare') as HTMLElement
+
+    node.style.display = 'block'
+
+    html2canvas(node)
+      .then(async (canvas) => {
+        dispatch(setPreviewImage(canvas.toDataURL()))
+        node.style.display = 'none'
+      })
+      .catch(async (err) => {
+        console.log(err)
+      })
+  }
+
   const handlePreviewClick = (): void => {
     const node: HTMLElement | null = document.getElementById('canvas-container') as HTMLElement
     node.style.position = 'unset'
@@ -106,6 +122,11 @@ export const Customizer: React.FC = () => {
         node.style.position = 'relative'
         node.style.left = '50%'
         node.style.transform = 'translateX(-50%)'
+
+        const firstThumbnail = selected.template.selectedThumbnail
+        dispatch(setSelectedThumbnail(firstThumbnail))
+
+        setCurrentPreviewImage()
       })
       .catch(async (err) => {
         console.log(err)
@@ -199,6 +220,7 @@ export const Customizer: React.FC = () => {
           </div>
         </div>
       </div>
+      <PreparePreview />
     </>
   )
 }
