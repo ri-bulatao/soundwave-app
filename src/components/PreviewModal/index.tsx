@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './index.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowPreviewModal } from '../../redux/reducers/controls'
+import { setIsPreviewLoading, setShowPreviewModal } from '../../redux/reducers/controls'
 import type { RootState } from '../../redux/store'
 import html2canvas from 'html2canvas'
 import { setPreviewImage, setSelectedThumbnail } from '../../redux/reducers/selected'
@@ -11,7 +11,7 @@ const PreviewModal: React.FC = () => {
   const { showPreviewModal } = useSelector((state: RootState) => state.controls.controls)
   const { selected } = useSelector((state: RootState) => state.selected)
   const { appLayoutState } = useSelector((state: RootState) => state.customizer)
-  // const [previewImage, setPreviewImage] = useState<string>('')
+  const { isPreviewLoading } = useSelector((state: RootState) => state.controls.controls)
 
   useEffect(() => {
     if (showPreviewModal) {
@@ -27,6 +27,7 @@ const PreviewModal: React.FC = () => {
 
   const updateSelectedThumbnail = (thumbnail: any): void => {
     dispatch(setSelectedThumbnail(thumbnail))
+    dispatch(setIsPreviewLoading(true))
 
     setTimeout(() => {
       const node: HTMLElement | null = document.getElementById('main_container_prepare') as HTMLElement
@@ -37,9 +38,11 @@ const PreviewModal: React.FC = () => {
         .then(async (canvas) => {
           dispatch(setPreviewImage(canvas.toDataURL()))
           node.style.display = 'none'
+          dispatch(setIsPreviewLoading(false))
         })
         .catch(async (err) => {
           console.log(err)
+          dispatch(setIsPreviewLoading(false))
         })
     }, 300)
   }
@@ -61,14 +64,26 @@ const PreviewModal: React.FC = () => {
                       </button>
                     </div>
                     <div className="modal-body">
-                      <div className="image-wrapper">
-                        <img className="image" src={selected.template.previewImage} alt="" />
-                        <div className="colors-container">
-                          <div className="color-box active"></div>
-                          <div className="color-box"></div>
-                          <div className="color-box"></div>
+                      { isPreviewLoading
+                      ? (
+                        <div className="loading_container">
+                          <div className="spinner-border" role="status">
+                            <span className="sr-only"></span>
+                          </div>
                         </div>
-                      </div>
+                      )
+                      : (
+                        <div className="image-wrapper">
+                          <img className="image" src={selected.template.previewImage} alt="" />
+                          <div className="colors-container">
+                            <div className="color-box active"></div>
+                            <div className="color-box"></div>
+                            <div className="color-box"></div>
+                          </div>
+                        </div>
+                      )
+                      }
+
                     </div>
                     <div className="modal-footer">
                       { selected.template.thumbnails.map(thumbnail => (
@@ -88,17 +103,29 @@ const PreviewModal: React.FC = () => {
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <div className="modal-body">
-                      <div className="image-wrapper">
-                        <button onClick={() => { dispatch(setShowPreviewModal(false)) }} className="close-button">
-                          <img className="icon" src='/src/assets/icons/svg/mobile-close.svg' />
-                        </button>
-                        <img className="image" src={selected.template.previewImage} alt="" />
-                        <div className="colors-container">
-                          <div className="color-box active"></div>
-                          <div className="color-box"></div>
-                          <div className="color-box"></div>
+                      { isPreviewLoading
+                      ? (
+                        <div className="loading_container">
+                          <div className="spinner-border" role="status">
+                            <span className="sr-only"></span>
+                          </div>
                         </div>
-                      </div>
+                      )
+                      : (
+                        <div className="image-wrapper">
+                          <button onClick={() => { dispatch(setShowPreviewModal(false)) }} className="close-button">
+                            <img className="icon" src='/src/assets/icons/svg/mobile-close.svg' />
+                          </button>
+                          <img className="image" src={selected.template.previewImage} alt="" />
+                          <div className="colors-container">
+                            <div className="color-box active"></div>
+                            <div className="color-box"></div>
+                            <div className="color-box"></div>
+                          </div>
+                        </div>
+                      )
+
+                      }
                     </div>
                     <div className="modal-footer">
                       <div className='template-contents'>

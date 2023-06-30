@@ -49,6 +49,7 @@ export interface Controls {
   isContinueDisabled: boolean
   showPreviewModal: boolean
   currentActiveAccordion: string
+  isPreviewLoading: boolean
 }
 
 export interface Customizer {

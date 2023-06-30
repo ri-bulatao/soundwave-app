@@ -3,7 +3,7 @@ import type { MouseEventHandler } from 'react'
 import { Accordion } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
-import { toggleShowTemplates, toggleEditBackground, toggleShowAudioResetConfirmation, setIsContinueDisabled, setShowPreviewModal, setCurrentActiveAccordion } from '../../redux/reducers/controls'
+import { toggleShowTemplates, toggleEditBackground, toggleShowAudioResetConfirmation, setIsContinueDisabled, setShowPreviewModal, setCurrentActiveAccordion, setIsPreviewLoading } from '../../redux/reducers/controls'
 import { setAudioFile, updateSpecifications } from '../../redux/reducers/canvas'
 import '~/pages/customizer/customizer.scss'
 import TitleEditor from '../../components/TitleEditor'
@@ -104,6 +104,7 @@ export const Customizer: React.FC = () => {
       .then(async (canvas) => {
         dispatch(setPreviewImage(canvas.toDataURL()))
         node.style.display = 'none'
+        dispatch(setIsPreviewLoading(false))
       })
       .catch(async (err) => {
         console.log(err)
@@ -116,6 +117,8 @@ export const Customizer: React.FC = () => {
     node.style.left = '0'
     node.style.transform = 'unset'
 
+    dispatch(setIsPreviewLoading(true))
+
     html2canvas(node)
       .then(async (canvas) => {
         dispatch(setCustomizedImage(canvas.toDataURL()))
@@ -126,10 +129,13 @@ export const Customizer: React.FC = () => {
         const firstThumbnail = selected.template.selectedThumbnail
         dispatch(setSelectedThumbnail(firstThumbnail))
 
-        setCurrentPreviewImage()
+        setTimeout(() => {
+          setCurrentPreviewImage()
+        }, 500)
       })
       .catch(async (err) => {
         console.log(err)
+        dispatch(setIsPreviewLoading(false))
       })
 
     dispatch(setShowPreviewModal(true))
