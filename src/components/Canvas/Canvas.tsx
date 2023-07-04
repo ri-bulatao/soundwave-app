@@ -33,28 +33,28 @@ const Canvas: React.FC = () => {
     dispatch(setCurrentEditting('subtitle'))
   }
 
-  const handleContextMenu = (e: any): void => {
-    e.preventDefault()
-  }
+  // const handleContextMenu = (e: any): void => {
+  //   e.preventDefault()
+  // }
 
-  const disableRefreshHotkey = (): void => {
-    window.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.key === 'r') {
-        e.preventDefault()
-        setShowPrompt(true)
-      }
+  // const disableRefreshHotkey = (): void => {
+  //   window.addEventListener('keydown', function (e) {
+  //     if (e.ctrlKey && e.key === 'r') {
+  //       e.preventDefault()
+  //       setShowPrompt(true)
+  //     }
 
-      if (e.keyCode === 116) {
-        e.preventDefault()
-        setShowPrompt(true)
-      }
+  //     if (e.keyCode === 116) {
+  //       e.preventDefault()
+  //       setShowPrompt(true)
+  //     }
 
-      if (e.key === 'PrtSc') {
-        e.preventDefault()
-        alert('disabled print screen')
-      }
-    })
-  }
+  //     if (e.key === 'PrtSc') {
+  //       e.preventDefault()
+  //       alert('disabled print screen')
+  //     }
+  //   })
+  // }
 
   const reloadPage = (): void => {
     setShowPrompt(false)
