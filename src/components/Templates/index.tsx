@@ -32,8 +32,11 @@ const Templates: React.FC = () => {
   }
 
   const handleConfirm = (): void => {
-    dispatch(setTemplate(template))
-    console.log(template)
+    const tempTemplate = {
+      ...template,
+      selectedThumbnail: template.thumbnails[0]
+    }
+    dispatch(setTemplate(tempTemplate))
     dispatch(toggleShowTemplates(false))
     toggeShowConfirmation(false)
   }
