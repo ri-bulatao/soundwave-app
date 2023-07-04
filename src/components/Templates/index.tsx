@@ -92,8 +92,7 @@ const Templates: React.FC = () => {
 
     html2canvas(node)
       .then(async (canvas) => {
-        dispatch(setCustomizedImage
-        (canvas.toDataURL()))
+        dispatch(setCustomizedImage(canvas.toDataURL()))
         node.style.position = 'relative'
         node.style.left = '50%'
         node.style.transform = 'translateX(-50%)'
@@ -232,7 +231,7 @@ const Templates: React.FC = () => {
           <button className="load-more">Load more</button>
         </div>
         <div className="action-container">
-          <button className="preview" onClick={() => handlePreviewClick()}>Preview</button>
+          <button className="preview" onClick={handlePreviewClick}>Preview</button>
           <button onClick={() => { handleModalClick(true) }} className="continue">Continue</button>
         </div>
         <div className="modals">
